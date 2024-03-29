@@ -25,12 +25,18 @@ class BookReview(models.Model):
 
     # Book rating choices
 
+    ONE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+
     BOOK_RATING = [
-        ("ONE", 1),
-        ("TWO", 2),
-        ("THREE", 3),
-        ("FOUR", 4),
-        ("FIVE", 5)
+        (ONE, "1"),
+        (TWO, "2"),
+        (THREE, "3"),
+        (FOUR, "4"),
+        (FIVE, "5")
     ]
 
     # Status choices
