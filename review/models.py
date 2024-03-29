@@ -49,3 +49,4 @@ class BookReview(models.Model):
     book_review = models.TextField()
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
