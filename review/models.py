@@ -57,6 +57,12 @@ class BookReview(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return f"A book review of {self.book_title} by {self.reviewer}"
+
 
 class Comment(models.Model):
     """
@@ -72,3 +78,9 @@ class Comment(models.Model):
     )
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"Comment: '{self.body}' by {self.commenter}"
