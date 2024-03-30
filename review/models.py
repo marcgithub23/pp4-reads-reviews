@@ -56,3 +56,19 @@ class BookReview(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+
+class Comment(models.Model):
+    """
+    Stores a single comment entry related to :model:`auth.User`
+    and :model:`review.BookReview`.
+    """
+
+    book_review = models.ForeignKey(
+        BookReview, on_delete=models.CASCADE, related_names="comments"
+    )
+    commenter = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_names="commenter"
+    )
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
