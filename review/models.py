@@ -65,10 +65,10 @@ class Comment(models.Model):
     """
 
     book_review = models.ForeignKey(
-        BookReview, on_delete=models.CASCADE, related_names="comments"
+        BookReview, on_delete=models.CASCADE, related_name="comments"
     )
     commenter = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_names="commenter"
+        User, on_delete=models.CASCADE, related_name="commenter"
     )
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
