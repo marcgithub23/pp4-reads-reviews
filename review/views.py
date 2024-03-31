@@ -6,5 +6,5 @@ from .models import BookReview
 
 
 class BookReviewList(generic.ListView):
-    queryset = BookReview.objects.all()
+    queryset = BookReview.objects.filter(status=1)
     template_name = "bookreview_list.html"
