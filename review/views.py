@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import BookReview
 
 # Create your views here.
 
 
-def my_review(request):
-    return HttpResponse("Hello, Review!")
+class BookReviewList(generic.ListView):
+    queryset = BookReview.objects.all()
+    template_name = "bookreview_list.html"
