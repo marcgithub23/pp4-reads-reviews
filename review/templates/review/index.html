@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- index.html content starts here -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero-slider" class="hero-slider">
+    <div class="container-md">
+        <div class="row">
+            <div class="col-12">
+                <div class="swiper sliderFeaturedPosts">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="img-bg d-flex align-items-end"
+                                style="background-image: url('static/img/hero-image.jpg');">
+                                <div class="img-bg-inner"
+                                    style="background-color: #060606a8;">
+                                    <h2>Want to share your reviews with other bookworms? Join us!</h2>
+                                    <button class="btn btn-outline-light btn-lg">Sign Up</button>
+                                    <button class="btn btn-outline-light btn-lg">Log In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- <div class="container-fluid">
+    <div class="row"> -->
+
+        <!-- Book reviews column -->
+        <!-- <div class="col-12 mt-3 left">
+            <div class="row">
+                {% for review in bookreview_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                <div class="image-flash">
+                                    <p class="author">Reviwed by: {{ review.reviewer }}</p>
+                                </div>
+                            </div>
+                            <a href="#" class="post-link">
+                                <h2 class="card-title">{{ review.book_title }}</h2>
+                            </a>
+
+                            <hr />
+                            <p class="card-text text-muted h6">{{ review.created_on }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div> -->
+
+<!-- ======= Post Grid Section ======= -->
+<section id="posts" class="posts">
+    <div class="container" data-aos="">
+        <div class="row g-5">
+            {% for review in bookreview_list %}
+            <div class="col-lg-6">
+                <div class="post-entry-1 lg">
+                    <a href="#"><img src="static/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
+                    <div class="post-meta"><span class="date">{{ review.book_genre }}</span> <span class="mx-1">&bullet;</span>
+                        <span>{{ review.created_on }}</span></div>
+                    <h2><a href="#">{{ review.book_title }}</a></h2>
+                    <p class="mb-4 d-block">
+                        Blurb: {{ review.book_blurb }}
+                    </p>
+
+                    <div class="d-flex align-items-center author">
+                        <div class="name">
+                            <h3 class="m-0 p-0">Reviewed by: {{ review.reviewer }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+        </div>
+        <div class="row g-5">
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</section> <!-- End Post Grid Section -->
+
+<!-- index.html content ends here -->
+{% endblock %}
