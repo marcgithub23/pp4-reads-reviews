@@ -87,7 +87,7 @@
                         <span>{{ review.created_on }}</span></div>
                     <h2><a href="#">{{ review.book_title }}</a></h2>
                     <p class="mb-4 d-block">
-                        Blurb: {{ review.book_blurb }}
+                        Blurb: {{ review.book_blurb|linebreaks }}
                     </p>
 
                     <div class="d-flex align-items-center author">
