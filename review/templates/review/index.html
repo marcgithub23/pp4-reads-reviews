@@ -29,52 +29,6 @@
     </div>
 </section>
 
-
-<!-- <div class="container-fluid">
-    <div class="row"> -->
-
-        <!-- Book reviews column -->
-        <!-- <div class="col-12 mt-3 left">
-            <div class="row">
-                {% for review in bookreview_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="image-container">
-                                <div class="image-flash">
-                                    <p class="author">Reviwed by: {{ review.reviewer }}</p>
-                                </div>
-                            </div>
-                            <a href="#" class="post-link">
-                                <h2 class="card-title">{{ review.book_title }}</h2>
-                            </a>
-
-                            <hr />
-                            <p class="card-text text-muted h6">{{ review.created_on }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
-
-            </div>
-        </div>
-    </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
-</div> -->
-
 <!-- ======= Post Grid Section ======= -->
 <section id="posts" class="posts">
     <div class="container" data-aos="">
@@ -89,7 +43,6 @@
                     <p class="mb-4 d-block">
                         Blurb: {{ review.book_blurb|linebreaks }}
                     </p>
-
                     <div class="d-flex align-items-center author">
                         <div class="name">
                             <h3 class="m-0 p-0">Reviewed by: {{ review.reviewer }}</h3>
@@ -104,16 +57,35 @@
             {% endfor %}
         </div>
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
+
+    <!-- ======= Pagination ======= -->
+    {% block pagination %}
+    <div class="text-center py-4">
+        <div class="custom-pagination">
+            {% if page_obj.has_previous %}
+            <a href="?page=1" class="prev">
+                First
+            </a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="prev">
+                Previous
+            </a>
+            {% endif%}
+
+            <a class="active">{{page_obj.number}}</a>
+            <a style="pointer-events: none">of {{page_obj.paginator.num_pages}}</a>
+
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
-</section> <!-- End Post Grid Section -->
+            <a href="?page={{ page_obj.next_page_number }}" class="next">
+                Next
+            </a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="next">
+                Last
+            </a>
+            {% endif%}
+        </div>
+    </div>
+    {% endblock %}
+</section>
 
 <!-- index.html content ends here -->
 {% endblock %}
