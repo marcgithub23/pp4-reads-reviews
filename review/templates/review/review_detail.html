@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="single-post-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 post-content">
+                <!-- ======= Single Post Content ======= -->
+                <div class="single-post">
+                    <div class="post-meta"><span class="date">{{ review.book_genre }}</span> <span class="mx-1">&bullet;</span>
+                        <span>{{ review.created_on }}</span></div>
+                    <div class="my-4">
+                        <img src="{% static 'img/default_bookcover.jpg' %}" alt="book cover" class="img-fluid">
+                    </div>
+                    <h1 class="mb-5">{{ review.book_title }}</h1>
+                    <h4>Author:</h4>
+                    <p>{{ review.book_author }}</p>
+                    <h4>Reviewer rating:</h4>
+                    <p>{{ review.book_rating }} out of 5</p>
+                    <h4>Reviewed by:</h4>
+                    <p>{{ review.reviewer }}</p>
+                    <h4>Blurb:</h4>
+                    <p>{{ review.book_blurb }}</p>
+                    <h4>Review:</h4>
+                    <p>{{ review.book_review|safe }}</p>
+                </div>
+                <!-- ======= End Single Post Content ======= -->
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

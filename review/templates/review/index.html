@@ -23,15 +23,15 @@
 
 <!-- ======= Post Grid Section ======= -->
 <section id="posts" class="posts">
-    <div class="container" data-aos="">
+    <div class="container">
         <div class="row g-5">
             {% for review in bookreview_list %}
             <div class="col-lg-6">
                 <div class="post-entry-1 lg">
-                    <a href="#"><img src="static/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
+                    <a href="{% url 'review_detail' review.slug %}"><img src="static/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
                     <div class="post-meta"><span class="date">{{ review.book_genre }}</span> <span class="mx-1">&bullet;</span>
                         <span>{{ review.created_on }}</span></div>
-                    <h2><a href="#">{{ review.book_title }}</a></h2>
+                    <h2><a href="{% url 'review_detail' review.slug %}">{{ review.book_title }}</a></h2>
                     <p class="mb-4 d-block">
                         Blurb: {{ review.book_blurb|linebreaks }}
                     </p>
