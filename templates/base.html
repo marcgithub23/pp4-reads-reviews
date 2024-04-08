@@ -2,6 +2,9 @@
 
 {% url 'home' as home_url %}
 {% url 'about' as about_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,14 +64,34 @@
                 <ul>
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
-                    <li class="dropdown"><a href="#"><span>Account</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#">
+                            <span>Welcome, username</span>
+                            <i class="bi bi-chevron-down dropdown-indicator"></i>
+                        </a>
                         <ul>
                             <li><a href="#">My Profile</a></li>
                             <li><a href="#">Post a Review</a></li>
-                            <li><a href="#">Log Out</a></li>
+                            <li>
+                                <a href="{% url 'account_logout' %}" aria-current="{% if request.path == logout_url %}page{% endif %}">
+                                    Log Out
+                                </a>
+                            </li>
                         </ul>
                     </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'account_signup' %}" aria-current="{% if request.path == signup_url %}page{% endif %}">
+                            Register
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'account_login' %}" aria-current="{% if request.path == login_url %}page{% endif %}">
+                            Log In
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </nav>
 

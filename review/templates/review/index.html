@@ -12,8 +12,12 @@
                 <div class="img-bg d-flex align-items-end" style="background-image: url('static/img/hero-image.jpg');">
                     <div class="img-bg-inner" style="background-color: #060606a8;">
                         <h2>Want to share your reviews with other bookworms? Join us!</h2>
-                        <button class="btn btn-outline-light btn-lg">Sign Up</button>
-                        <button class="btn btn-outline-light btn-lg">Log In</button>
+                        {% if user.is_authenticated %}
+                        <button class="btn btn-outline-light btn-lg">Post a review</button>
+                        {% else %}
+                        <a href="{% url 'account_signup' %}" class="btn btn-outline-light btn-lg">Register</a>
+                        <a href="{% url 'account_login' %}" class="btn btn-outline-light btn-lg">Log In</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
