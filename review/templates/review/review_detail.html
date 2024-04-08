@@ -28,6 +28,31 @@
                     <p>{{ review.book_review|safe }}</p>
                 </div>
                 <!-- ======= End Single Post Content ======= -->
+
+                <!-- ======= Comments ======= -->
+                <div class="comments">
+                    <h5 class="comment-title py-4">
+                        {{ comment_count }} Comments
+                    </h5>
+                    {% for comment in comments %}
+                    <div class="comment d-flex mb-4">
+                        <div class="flex-grow-1 ms-2 ms-sm-3">
+                            <div class="comment-meta d-flex align-items-baseline">
+                                <h6 class="me-2">{{ comment.commenter }}</h6>
+                                <span class="text-muted">({{ comment.created_on }})</span>
+                            </div>
+                            <div class="comment-body">
+                                {{ comment.body | linebreaks }}
+                            </div>
+                            {% if user.is_authenticated and comment.commenter == user %}
+                            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                            <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- ======= End Comments ======= -->
             </div>
         </div>
     </div>

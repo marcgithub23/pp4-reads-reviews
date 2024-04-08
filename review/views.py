@@ -27,9 +27,15 @@ def review_detail(request, slug):
 
     queryset = BookReview.objects.filter(status=1)
     book_review = get_object_or_404(queryset, slug=slug)
+    comments = book_review.comments.all().order_by("-created_on")
+    comment_count = book_review.comments.all().count()
 
     return render(
         request,
         "review/review_detail.html",
-        {"review": book_review},
+        {
+            "review": book_review,
+            "comments": comments,
+            "comment_count": comment_count,
+        },
     )
