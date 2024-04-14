@@ -14,7 +14,11 @@
                     <div class="post-meta"><span class="date">{{ review.book_genre }}</span> <span class="mx-1">&bullet;</span>
                         <span>{{ review.created_on }}</span></div>
                     <div class="my-4">
-                        <img src="{% static 'img/default_bookcover.jpg' %}" alt="book cover" class="img-fluid">
+                        {% if "placeholder" in review.book_cover.url %}
+                        <img src="{% static 'img/default_bookcover.jpg' %}" alt="placeholder image" class="img-fluid">
+                        {% else %}
+                        <img src="{{ review.book_cover.url }}" alt="{{ review.book_title }}" class="img-fluid">
+                        {% endif %}
                     </div>
                     <h1 class="mb-5">{{ review.book_title }}</h1>
                     <h4>Author:</h4>
