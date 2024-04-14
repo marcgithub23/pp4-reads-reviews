@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 
 <!-- index.html content starts here -->
@@ -32,7 +34,13 @@
             {% for review in bookreview_list %}
             <div class="col-lg-6">
                 <div class="post-entry-1 lg">
-                    <a href="{% url 'review_detail' review.slug %}"><img src="static/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
+                    <a href="{% url 'review_detail' review.slug %}">
+                        {% if "placeholder" in review.book_cover.url %}
+                        <img src="{% static 'img/default_bookcover.jpg' %}" alt="placeholder image" class="img-fluid">
+                        {% else %}
+                        <img src="{{ review.book_cover.url }}" alt="{{ review.book_title }}" class="img-fluid">
+                        {% endif %}
+                    </a>
                     <div class="post-meta"><span class="date">{{ review.book_genre }}</span> <span class="mx-1">&bullet;</span>
                         <span>{{ review.created_on }}</span></div>
                     <h2><a href="{% url 'review_detail' review.slug %}">{{ review.book_title }}</a></h2>

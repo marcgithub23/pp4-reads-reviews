@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -44,6 +45,7 @@ class BookReview(models.Model):
     STATUS = ((0, "Draft"), (1, "Published"))
 
     slug = models.SlugField(max_length=200, unique=True)
+    book_cover = CloudinaryField('image', default='placeholder')
     book_title = models.CharField(max_length=200)
     book_author = models.CharField(max_length=100)
     book_genre = models.CharField(max_length=50, choices=GENRE)
