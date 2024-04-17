@@ -16,28 +16,22 @@ class BookReview(models.Model):
         ("CLASSICS", "Classics"),
         ("CRIME", "Crime"),
         ("FANTASY", "Fantasy"),
-        ("GENERAL_FICTION", "General Fiction"),
+        ("GENERAL FICTION", "General Fiction"),
         ("HORROR", "Horror"),
         ("NONFICTION", "Nonfiction"),
         ("ROMANCE", "Romance"),
-        ("SCIENCE_FICTION", "Science Fiction"),
+        ("SCIENCE FICTION", "Science Fiction"),
         ("YOUNG_ADULT", "Young Adult")
     ]
 
     # Book rating choices
 
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
-
     BOOK_RATING = [
-        (ONE, "1"),
-        (TWO, "2"),
-        (THREE, "3"),
-        (FOUR, "4"),
-        (FIVE, "5")
+        (1, "1"),
+        (2, "2"),
+        (3, "3"),
+        (4, "4"),
+        (5, "5")
     ]
 
     # Status choices
