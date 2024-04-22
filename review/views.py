@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 
 from .models import BookReview, Comment
-from .forms import AddReviewForm, CommentForm
+from .forms import CommentForm, ReviewForm
 
 # Create your views here.
 
@@ -20,7 +20,7 @@ class BookReviewList(generic.ListView):
 class AddReviewView(generic.CreateView):
     model = BookReview
     template_name = 'review/add_review.html'
-    form_class = AddReviewForm
+    form_class = ReviewForm
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -34,6 +34,13 @@ class AddReviewView(generic.CreateView):
         instance.slug = slugify(slug_format)
         instance.save()
         return super().form_valid(form)
+
+
+class EditReviewView(generic.UpdateView):
+    model = BookReview
+    template_name = 'review/edit_review.html'
+    form_class = ReviewForm
+    success_url = reverse_lazy('home')
 
 
 def review_detail(request, slug):

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Edit review
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == bookreview.reviewer.id %}
+        <section>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Update</button>
+                </form>
+            </div>
+        </section>
+    {% else %}
+        <div>
+            You are not authorised to edit this review.
+        </div>
+    {% endif %}
+{% else %}
+    <div>
+        Please log in to edit a review.
+    </div>
+{% endif %}
+
+{% endblock %}
