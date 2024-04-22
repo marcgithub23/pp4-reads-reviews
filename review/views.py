@@ -3,8 +3,9 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+
 from .models import BookReview, Comment
-from .forms import CommentForm
+from .forms import AddReviewForm, CommentForm
 
 # Create your views here.
 
@@ -18,7 +19,7 @@ class BookReviewList(generic.ListView):
 class AddReviewView(generic.CreateView):
     model = BookReview
     template_name = 'review/add_review.html'
-    fields = '__all__'
+    form_class = AddReviewForm
     success_url = reverse_lazy('home')
 
 
