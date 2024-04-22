@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Add review
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <section>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Post</button>
+            </form>
+        </div>
+    </section>
+{% else %}
+    <div>
+        Please log in <a href="{% url 'account_login' %}">here</a> to add a review.
+    </div>
+{% endif %}
+
+{% endblock %}

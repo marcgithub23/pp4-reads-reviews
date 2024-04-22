@@ -15,7 +15,7 @@
                     <div class="img-bg-inner" style="background-color: #060606a8;">
                         <h2>Want to share your reviews with other bookworms? Join us!</h2>
                         {% if user.is_authenticated %}
-                        <button class="btn btn-outline-light btn-lg">Post a review</button>
+                        <a href="{% url 'add_review' %}" class="btn btn-outline-light btn-lg">Post a review</a>
                         {% else %}
                         <a href="{% url 'account_signup' %}" class="btn btn-outline-light btn-lg">Register</a>
                         <a href="{% url 'account_login' %}" class="btn btn-outline-light btn-lg">Log In</a>

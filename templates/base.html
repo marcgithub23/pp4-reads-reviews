@@ -45,7 +45,11 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <title>ReadsReviews</title>
+    <title>
+        {% block title %}
+            ReadsReviews
+        {% endblock %}
+    </title>
 </head>
 
 <body>
@@ -72,7 +76,7 @@
                         </a>
                         <ul>
                             <li><a href="#">My Profile</a></li>
-                            <li><a href="#">Post a Review</a></li>
+                            <li><a href="{% url 'add_review' %}">Post a Review</a></li>
                             <li>
                                 <a href="{% url 'account_logout' %}" aria-current="{% if request.path == logout_url %}page{% endif %}">
                                     Log Out

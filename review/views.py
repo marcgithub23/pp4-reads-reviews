@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -12,6 +13,14 @@ class BookReviewList(generic.ListView):
     queryset = BookReview.objects.filter(status=1)
     template_name = "review/index.html"
     paginate_by = 6
+
+
+class AddReviewView(generic.CreateView):
+    model = BookReview
+    template_name = 'review/add_review.html'
+    fields = '__all__'
+    success_url = reverse_lazy('home')
+
 
 
 def review_detail(request, slug):
