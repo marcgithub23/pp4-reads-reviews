@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.views import generic
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 
 from .models import BookReview, Comment
@@ -17,11 +18,12 @@ class BookReviewList(generic.ListView):
     paginate_by = 6
 
 
-class AddReviewView(generic.CreateView):
+class AddReviewView(SuccessMessageMixin, generic.CreateView):
     model = BookReview
     template_name = 'review/add_review.html'
     form_class = ReviewForm
     success_url = reverse_lazy('home')
+    success_message = 'Your review has been successfully added.'
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -34,13 +36,16 @@ class AddReviewView(generic.CreateView):
         instance.slug = slugify(slug_format)
         instance.save()
         return super().form_valid(form)
+        
+        messages.success()
 
 
-class EditReviewView(generic.UpdateView):
+class EditReviewView(SuccessMessageMixin, generic.UpdateView):
     model = BookReview
     template_name = 'review/edit_review.html'
     form_class = ReviewForm
     success_url = reverse_lazy('home')
+    success_message = 'Your review has been successfully updated.'
 
 
 def review_detail(request, slug):

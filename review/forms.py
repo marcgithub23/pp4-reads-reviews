@@ -22,7 +22,8 @@ class ReviewForm(forms.ModelForm):
             'status'
         )
         widgets = {
-            'book_cover': forms.FileInput(attrs={'class':'form-control'}),
+            'book_cover': forms.FileInput(
+                attrs={'class':'form-control', 'type':'file'}),
             'book_title': forms.TextInput(attrs={'class':'form-control'}),
             'book_author': forms.TextInput(attrs={'class':'form-control'}),
             'book_genre': forms.Select(attrs={'class':'form-control'}),
