@@ -8,8 +8,9 @@ from cloudinary.models import CloudinaryField
 class UserProfile(models.Model):
     user_profile = models.OneToOneField(
         User,
+        null=True,
         on_delete=models.CASCADE,
         related_name='profile',
     )
     profile_photo = CloudinaryField('image', default='placeholder')
-    bio = models.TextField()
+    bio = models.TextField(blank=True, null=True)
