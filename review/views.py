@@ -36,8 +36,13 @@ class AddReviewView(SuccessMessageMixin, generic.CreateView):
         instance.slug = slugify(slug_format)
         instance.save()
         return super().form_valid(form)
-        
-        messages.success()
+
+
+class DeleteReviewView(SuccessMessageMixin, generic.DeleteView):
+    model = BookReview
+    template_name = 'review/delete_review.html'
+    success_url = reverse_lazy('home')
+    success_message = 'Your review has been successfully deleted.'
 
 
 class EditReviewView(SuccessMessageMixin, generic.UpdateView):

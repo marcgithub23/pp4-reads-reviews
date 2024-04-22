@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Delete review
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == bookreview.reviewer.id %}
+        <section>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h3>Are you sure you want to delete your review of:</h3>
+                    <p>{{ bookreview.book_title }} by {{ bookreview.book_author }}?</p>
+                    <button class="btn btn-secondary">Delete</button>
+                </form>
+            </div>
+        </section>
+    {% else %}
+        <div>
+            You are not authorised to delete this review.
+        </div>
+    {% endif %}
+{% else %}
+    <div>
+        Please log in to delete a review.
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -6,6 +6,11 @@ urlpatterns = [
     path('', views.BookReviewList.as_view(), name='home'),
     path('add_review/', views.AddReviewView.as_view(), name='add_review'),
     path(
+        'delete_review/<int:pk>',
+        views.DeleteReviewView.as_view(),
+        name='delete_review'
+    ),
+    path(
         'edit_review/<int:pk>',
         views.EditReviewView.as_view(),
         name='edit_review'

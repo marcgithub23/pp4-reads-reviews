@@ -34,6 +34,7 @@
                 </div>
                 {% if user.is_authenticated and user.id == review.reviewer.id %}
                     <a href="{% url 'edit_review' review.id %}" class="btn btn-secondary">Edit review</a>
+                    <a href="{% url 'delete_review' review.id %}" class="btn btn-secondary">Delete review</a>
                 {% endif %}
                 <!-- ======= End Single Post Content ======= -->
 
