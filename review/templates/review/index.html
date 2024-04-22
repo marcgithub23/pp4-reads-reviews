@@ -45,7 +45,7 @@
                         <span>{{ review.created_on }}</span></div>
                     <h2><a href="{% url 'review_detail' review.slug %}">{{ review.book_title }}</a></h2>
                     <p class="mb-4 d-block">
-                        Blurb: {{ review.book_blurb|linebreaks }}
+                        Blurb: {{ review.book_blurb | safe | linebreaks }}
                     </p>
                     <div class="d-flex align-items-center author">
                         <div class="name">

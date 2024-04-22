@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
@@ -43,12 +44,12 @@ class BookReview(models.Model):
     book_title = models.CharField(max_length=200)
     book_author = models.CharField(max_length=100)
     book_genre = models.CharField(max_length=50, choices=GENRE)
-    book_blurb = models.TextField()
+    book_blurb = RichTextField()
     book_rating = models.IntegerField(choices=BOOK_RATING)
     reviewer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="book_reviews"
     )
-    book_review = models.TextField()
+    book_review = RichTextField()
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

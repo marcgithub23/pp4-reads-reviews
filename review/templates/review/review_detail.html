@@ -28,7 +28,7 @@
                     <h4>Reviewed by:</h4>
                     <p>{{ review.reviewer }}</p>
                     <h4>Blurb:</h4>
-                    <p>{{ review.book_blurb }}</p>
+                    <p>{{ review.book_blurb | safe }}</p>
                     <h4>Review:</h4>
                     <p>{{ review.book_review|safe }}</p>
                 </div>
