@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.urls import reverse_lazy
+from django.utils.text import slugify
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -22,6 +23,17 @@ class AddReviewView(generic.CreateView):
     form_class = AddReviewForm
     success_url = reverse_lazy('home')
 
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        # Assign current user as reviewer
+        instance.reviewer = self.request.user
+        # Create slug base format
+        slug_format = f'''
+{self.request.user.username}-{form.cleaned_data['book_title']}'''
+        # Slugify reviewer's username and book title
+        instance.slug = slugify(slug_format)
+        instance.save()
+        return super().form_valid(form)
 
 
 def review_detail(request, slug):
