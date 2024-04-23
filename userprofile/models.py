@@ -14,3 +14,6 @@ class UserProfile(models.Model):
     )
     profile_photo = CloudinaryField('image', default='placeholder')
     bio = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return str(self.user_profile)
