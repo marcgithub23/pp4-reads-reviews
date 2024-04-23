@@ -23,19 +23,34 @@ class AddReviewView(SuccessMessageMixin, generic.CreateView):
     template_name = 'review/add_review.html'
     form_class = ReviewForm
     success_url = reverse_lazy('home')
-    success_message = 'Your review has been successfully added.'
+    success_message = 'Your review has been successfully pusblished.'
 
     def form_valid(self, form):
-        instance = form.save(commit=False)
-        # Assign current user as reviewer
-        instance.reviewer = self.request.user
-        # Create slug base format
-        slug_format = f'''
+        if 'save_draft' in self.request.POST:
+            self.instance = form.save(commit=False)
+            # Assign current user as reviewer
+            self.instance.reviewer = self.request.user
+            # Create slug base format
+            slug_format = f'''
 {self.request.user.username}-{form.cleaned_data['book_title']}'''
-        # Slugify reviewer's username and book title
-        instance.slug = slugify(slug_format)
-        instance.save()
-        return super().form_valid(form)
+            # Slugify reviewer's username and book title
+            self.instance.slug = slugify(slug_format)
+            self.instance.status = 0
+            self.instance.save()
+            self.success_message = 'Your review has been saved as draft.'
+            return super().form_valid(form)
+        else:
+            self.instance = form.save(commit=False)
+            # Assign current user as reviewer
+            self.instance.reviewer = self.request.user
+            # Create slug base format
+            slug_format = f'''
+{self.request.user.username}-{form.cleaned_data['book_title']}'''
+            # Slugify reviewer's username and book title
+            self.instance.slug = slugify(slug_format)
+            self.instance.status = 1
+            self.instance.save()
+            return super().form_valid(form)
 
 
 class DeleteReviewView(SuccessMessageMixin, generic.DeleteView):
@@ -50,7 +65,23 @@ class EditReviewView(SuccessMessageMixin, generic.UpdateView):
     template_name = 'review/edit_review.html'
     form_class = ReviewForm
     success_url = reverse_lazy('home')
-    success_message = 'Your review has been successfully updated.'
+
+    def form_valid(self, form):
+        self.instance = form.save(commit=False)
+        if 'publish' in self.request.POST:
+            if self.instance.status == 0:
+                self.instance.status = 1
+                self.success_message = 'Your draft has been published.'
+            else:
+                self.success_message = 'Your review has been updated.'
+        elif 'save_draft' in self.request.POST:
+            self.instance.status = 0
+            self.success_message = 'Your changes have been saved as draft.'
+        slug_format = f'''
+{self.request.user.username}-{form.cleaned_data['book_title']}'''
+        self.instance.slug = slugify(slug_format)
+        self.instance.save()
+        return super().form_valid(form)
 
 
 def review_detail(request, slug):
