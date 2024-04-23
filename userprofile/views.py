@@ -40,3 +40,11 @@ class ProfilePageView(generic.DetailView):
 			status=0
 		)
 		return context
+
+
+class EditProfilePageView(SuccessMessageMixin, generic.UpdateView):
+	model = UserProfile
+	template_name = 'userprofile/edit_profile_page.html'
+	fields = ['profile_photo', 'bio']
+	success_url = reverse_lazy('home')
+	success_message = 'Your profile page has been successfully updated.'

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Edit Profile Page
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == user.profile.id %}
+        <section>
+            <div class="form-group">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button>Update Profile Page</button>
+                </form>
+            </div>
+        </section>
+    {% else %}
+        <div>
+            You are not authorised to edit this profile page.
+        </div>
+    {% endif %}
+{% else %}
+    <div>
+        Please log in to edit your profile page.
+    </div>
+{% endif %}
+
+{% endblock %}
