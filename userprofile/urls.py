@@ -8,4 +8,8 @@ urlpatterns = [
         views.EditAccountView.as_view(),
         name='edit_account'
     ),
+    path(
+        'profile/<int:pk>',
+        views.ProfilePageView.as_view(),
+        name='profile_page'),
 ]

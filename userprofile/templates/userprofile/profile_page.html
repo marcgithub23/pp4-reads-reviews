@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+        My Profile Page
+    {% else %}
+        {{ profile_page.user_profile.username }}'s Profile Page
+    {% endif %}
+{% endblock %}
+
+
+
+{% block content %}
+
+{% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+    <h1>My Profile Page</h1>
+{% else %}
+    <h1>{{ profile_page.user_profile.username }}'s Profile Page</h1>
+{% endif %}
+
+<div>
+    {% if "placeholder" in profile_page.profile_photo.url %}
+        <img src="{% static 'img/nobody.jpg' %}" alt="default profile photo" class="card-img">
+    {% else %}
+        <img src="{{ profile_page.profile_photo.url }}" alt="user profile photo" class="card-img">
+    {% endif %}
+</div>
+<div>
+    {% if profile_page.bio %}
+        <p>{{ profile_page.bio }}</p>
+    {% else %}
+        <p>No bio yet.</p>
+    {% endif %}
+</div>
+
+{% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+    <h2>My Published Reviews</h2>
+{% else %}
+    <h2>{{ profile_page.user_profile.username }}'s Reviews</h2>
+{% endif %}
+
+<ul>
+    {% for review in user_reviews %}
+        <li>
+            <a href="{% url 'review_detail' review.slug %}">
+                {{ review.book_title }} by {{ review.book_author }} - Rating: {{ review.book_rating }} out of 5 stars.
+            </a>
+        </li>
+    {% empty %}
+        <li>No reviews yet.</li>
+    {% endfor %}
+</ul>
+
+{% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+    <h2>My Draft Reviews</h2>
+    {% if user_draft_reviews %}
+        <ul>
+            {% for review in user_draft_reviews %}
+                <li>
+                    <a href="{% url 'edit_review' review.id %}">
+                        {{ review.book_title }} by {{ review.book_author }} - Rating: {{ review.book_rating }} out of 5 stars.
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div>
+            You have no draft reviews.
+        </div>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
