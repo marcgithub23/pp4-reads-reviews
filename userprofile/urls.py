@@ -14,6 +14,11 @@ urlpatterns = [
         name='profile_page'
     ),
     path(
+        'create_profile_page/',
+        views.CreateProfilePageView.as_view(),
+        name='create_profile_page'
+    ),
+    path(
         'edit_profile_page/<int:pk>',
         views.EditProfilePageView.as_view(),
         name='edit_profile_page'

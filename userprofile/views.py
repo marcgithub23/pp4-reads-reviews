@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from review.models import BookReview
-from .forms import EditAccountForm
+from .forms import EditAccountForm, CreateProfilePageForm
 from .models import UserProfile
 
 # Create your views here.
@@ -40,6 +40,17 @@ class ProfilePageView(generic.DetailView):
 			status=0
 		)
 		return context
+
+
+class CreateProfilePageView(SuccessMessageMixin, generic.CreateView):
+	model = UserProfile
+	form_class = CreateProfilePageForm
+	template_name = 'userprofile/create_profile_page.html'
+	success_message = 'Your profile page has been successfully created.'
+
+	def form_valid(self, form):
+		form.instance.user_profile = self.request.user
+		return super().form_valid(form)
 
 
 class EditProfilePageView(SuccessMessageMixin, generic.UpdateView):
