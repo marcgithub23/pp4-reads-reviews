@@ -9,7 +9,6 @@ from cloudinary.models import CloudinaryField
 class UserProfile(models.Model):
     user_profile = models.OneToOneField(
         User,
-        null=True,
         on_delete=models.CASCADE,
         related_name='profile',
     )
