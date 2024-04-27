@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.utils.text import slugify
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 
@@ -18,7 +19,11 @@ class BookReviewList(generic.ListView):
     paginate_by = 6
 
 
-class AddReviewView(SuccessMessageMixin, generic.CreateView):
+class AddReviewView(
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    generic.CreateView):
+
     model = BookReview
     template_name = 'review/add_review.html'
     form_class = ReviewForm
@@ -52,15 +57,48 @@ class AddReviewView(SuccessMessageMixin, generic.CreateView):
             self.instance.save()
             return super().form_valid(form)
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(
+                request,
+                'Please log in to add a review.')
+            return HttpResponseRedirect(reverse('home'))
+        
+        return super().dispatch(request, *args, **kwargs)
 
-class DeleteReviewView(SuccessMessageMixin, generic.DeleteView):
+
+class DeleteReviewView(
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    generic.DeleteView):
+
     model = BookReview
     template_name = 'review/delete_review.html'
     success_url = reverse_lazy('home')
     success_message = 'Your review has been successfully deleted.'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(
+                request,
+                'Please log in to delete your review.')
+            return HttpResponseRedirect(reverse('home'))
 
-class EditReviewView(SuccessMessageMixin, generic.UpdateView):
+        self.object = self.get_object()
+        if self.object.reviewer != request.user:
+            messages.error(
+                request,
+                'You are not authorised to delete this review.'
+            )
+            return HttpResponseRedirect(reverse('home'))
+        return super().dispatch(request, *args, **kwargs)
+
+
+class EditReviewView(
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    generic.UpdateView):
+
     model = BookReview
     template_name = 'review/edit_review.html'
     form_class = ReviewForm
@@ -82,6 +120,22 @@ class EditReviewView(SuccessMessageMixin, generic.UpdateView):
         self.instance.slug = slugify(slug_format)
         self.instance.save()
         return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(
+                request,
+                'Please log in to edit your review.')
+            return HttpResponseRedirect(reverse('home'))
+
+        self.object = self.get_object()
+        if self.object.reviewer != request.user:
+            messages.error(
+                request,
+                'You are not authorised to edit this review.'
+            )
+            return HttpResponseRedirect(reverse('home'))
+        return super().dispatch(request, *args, **kwargs)
 
 
 def review_detail(request, slug):

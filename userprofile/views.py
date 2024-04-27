@@ -1,4 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, reverse
 from django.urls import reverse_lazy
@@ -11,7 +13,11 @@ from .models import UserProfile
 # Create your views here.
 
 
-class EditAccountView(SuccessMessageMixin, generic.UpdateView):
+class EditAccountView(
+	LoginRequiredMixin,
+	SuccessMessageMixin,
+	generic.UpdateView):
+	
 	form_class = EditAccountForm
 	template_name = 'userprofile/edit_account.html'
 	success_url = reverse_lazy('home')
@@ -19,6 +25,14 @@ class EditAccountView(SuccessMessageMixin, generic.UpdateView):
 
 	def get_object(self):
 		return self.request.user
+	
+	def dispatch(self, request, *args, **kwargs):
+		if not request.user.is_authenticated:
+			messages.error(
+				request,
+				'Please log in to edit your account.')
+			return HttpResponseRedirect(reverse('home'))
+		return super().dispatch(request, *args, **kwargs)
 
 
 class ProfilePageView(generic.DetailView):
@@ -42,9 +56,29 @@ class ProfilePageView(generic.DetailView):
 		return context
 
 
-class EditProfilePageView(SuccessMessageMixin, generic.UpdateView):
+class EditProfilePageView(
+	LoginRequiredMixin,
+	SuccessMessageMixin,
+	generic.UpdateView):
+
 	model = UserProfile
 	template_name = 'userprofile/edit_profile_page.html'
 	fields = ['profile_photo', 'bio']
 	success_url = reverse_lazy('home')
 	success_message = 'Your profile page has been successfully updated.'
+
+	def dispatch(self, request, *args, **kwargs):
+		if not request.user.is_authenticated:
+			messages.error(
+				request,
+				'Please log in to edit your profile.')
+			return HttpResponseRedirect(reverse('home'))
+		
+		self.object = self.get_object()
+		if self.object.user_profile != request.user:
+			messages.error(
+				request,
+				'You are not authorised to edit this profile.'
+			)
+			return HttpResponseRedirect(reverse('home'))
+		return super().dispatch(request, *args, **kwargs)
