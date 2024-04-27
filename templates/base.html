@@ -76,11 +76,7 @@
                         </a>
                         <ul>
                             <li><a href="{% url 'edit_account' %}">Edit Account</a></li>
-                            {% if user.profile.id %}
-                                <li><a href="{% url 'profile_page' user.profile.id %}">My Profile</a></li>
-                            {% else %}
-                                <li><a href="{% url 'create_profile_page' %}">Create Profile Page</a></li>
-                            {% endif %}
+                            <li><a href="{% url 'profile_page' user.profile.id %}">My Profile</a></li>
                             <li><a href="{% url 'add_review' %}">Post a Review</a></li>
                             <li>
                                 <a href="{% url 'account_logout' %}" aria-current="{% if request.path == logout_url %}page{% endif %}">
