@@ -34,7 +34,7 @@
     <!-- Title -->
     <title>
         {% block title %}
-            ReadsReviews
+        ReadsReviews
         {% endblock %}
     </title>
 </head>
@@ -67,38 +67,43 @@
                             <a class="nav-link" href="{% url 'about' %}">About</a>
                         </li>
                         {% if user.is_authenticated %}
-                            <li class="dropdown nav-item">
-                                <a class="dropdown-toggle nav-link" type="button" id="username-dropdown" data-bs-toggle="dropdown">
-                                    Welcome, {{ user }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="username-dropdown">
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'edit_account' %}">Edit Account</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'profile_page' user.profile.id %}">My Profile</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'add_review' %}">Post a Review</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'account_logout' %}" aria-current="{% if request.path == logout_url %}page{% endif %}">
-                                            Log Out
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <li class="dropdown nav-item">
+                            <a class="dropdown-toggle nav-link" type="button" id="username-dropdown"
+                                data-bs-toggle="dropdown">
+                                Welcome, {{ user }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="username-dropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'edit_account' %}">Edit Account</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'profile_page' user.profile.id %}">My
+                                        Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'add_review' %}">Post a Review</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}"
+                                        aria-current="{% if request.path == logout_url %}page{% endif %}">
+                                        Log Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_signup' %}" aria-current="{% if request.path == signup_url %}page{% endif %}">
-                                    Register
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'account_login' %}" aria-current="{% if request.path == login_url %}page{% endif %}">
-                                    Log In
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}"
+                                aria-current="{% if request.path == signup_url %}page{% endif %}">
+                                Register
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_login' %}"
+                                aria-current="{% if request.path == login_url %}page{% endif %}">
+                                Log In
+                            </a>
+                        </li>
                         {% endif %}
                     </ul>
                 </div>
@@ -135,9 +140,11 @@
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">About</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">About</a>
+                </li>
             </ul>
-            <p class="text-center text-body-secondary">&copy; 2024 ReadsReviews <small>(Educational purposes only)</small></p>
+            <p class="text-center text-body-secondary">&copy; 2024 ReadsReviews <small>(Educational purposes
+                    only)</small></p>
         </footer>
     </div>
 
