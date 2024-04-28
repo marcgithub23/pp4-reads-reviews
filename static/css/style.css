@@ -1,0 +1,15 @@
+/* Google fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Martel:wght@200;300;400;600;700;800;900&family=PT+Sans+Caption:wght@400;700&family=Yrsa:ital,wght@0,300..700;1,300..700&display=swap');
+
+/* General styling */
+h1 {
+    font-family: "Martel", serif;
+}
+
+h2 {
+    font-family: "Yrsa", serif;
+}
+
+p {
+    font-family: "PT Sans Caption", sans-serif;
+}
