@@ -118,3 +118,80 @@ Google Fonts Martel, Yrsa, and PT Sans Caption were used for h1, h2, and p eleme
 - [Large screens profile page wireframe](documentation/large-profilepage.png)
 - [Large screens review page wireframe](documentation/large-reviewpage.png)
 - [Large screens comments section wireframe](documentation/large-commentsection.png)
+
+
+---
+
+
+## Information Architecture
+
+### Database
+
+* ElephantSQL was the external database used to store all the data.
+
+### Entity-Relationship Diagram
+
+* [LucidChart](https://www.lucidchart.com/) was used at the inception of data models.
+
+- Then the database schema was generated using the [Django extension pygraphviz](https://django-extensions.readthedocs.io/en/latest/graph_models.html). In this [database schema](documentation/erd-db-schema.png), the five highlighted tables are my models.
+
+### Data Modeling
+
+1. **UserProfile**
+
+Extends Allauth's User model.
+
+| Field Name  | Field Type | Attributes |
+| -------------| ------------| --------- |
+| user_profile  | OneToOneField  |  User, on_delete cascade |
+| profile_photo | CloudinaryField | image, default=placeholder |
+| bio  | TextField | blank=True, null=True |
+
+2. **BookReview**
+
+GENRE = Classics, Crime, Fantasy, General Fiction, Horror, Non-fiction, Romance, Science Fiction, Young Adult
+
+BOOK_RATING = 1, 2, 3, 4, 5
+
+STATUS = 0: draft, 1: published
+
+| Field Name  | Field Type | Attributes |
+| -------------| ------------| --------- |
+| slug  | SlugField  |  max_lenght=200, unique=True |
+| book_cover | CloudinaryField | image, default=placeholder |
+| book_title  | CharField | max_length=200 |
+| book_author  | CharField | max_length=100 |
+| book_genre  | CharField | max_length=50, choices=GENRE |
+| book_blurb  | RichTextField | n/a |
+| book_rating  | IntegerField | choices=BOOK_RATING |
+| reviewer  | ForeignKey | User, on_delete cascade |
+| book_review  | RichTextField | n/a |
+| status  | IntegerField | choices=STATUS, default=0 |
+| created_on  | DateTimeField | auto_now_add=True |
+| updated_on  | DateTimeField | auto_now=True |
+
+3. **Comment**
+
+| Field Name  | Field Type | Attributes |
+| -------------| ------------| --------- |
+| book_review  | ForeignKey  |  BookReview, on_delete cascade |
+| commenter | ForeignKey | User, on_delete cascade |
+| body  | TextField | n/a |
+| created_on  | DateTimeField | auto_now_add=True |
+
+4. **About**
+
+| Field Name  | Field Type | Attributes |
+| -------------| ------------| --------- |
+| title  | CharField  |  max_length=200 |
+| updated_on  | DateTimeField | auto_now=True |
+| content  | TextField | n/a |
+
+5. **Feedback**
+
+| Field Name  | Field Type | Attributes |
+| -------------| ------------| --------- |
+| name  | CharField  |  max_length=200 |
+| email  | EmailField | n/a |
+| message  | TextField | n/a |
+| read  | BooleanField | default=False |
