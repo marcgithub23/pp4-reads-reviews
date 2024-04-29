@@ -4,94 +4,95 @@
 
 {% block content %}
 
-<!-- index.html content starts here -->
-
-<!-- ======= Hero Section ======= -->
-<section id="hero-slider" class="hero-slider">
-    <div class="container-md">
-        <div class="row">
-            <div class="col-12">
-                <div class="img-bg d-flex align-items-end" style="background-image: url('static/img/hero-image.jpg');">
-                    <div class="img-bg-inner" style="background-color: #060606a8;">
-                        <h2>Want to share your reviews with other bookworms? Join us!</h2>
-                        {% if user.is_authenticated %}
-                        <a href="{% url 'add_review' %}" class="btn btn-outline-light btn-lg">Post a review</a>
-                        {% else %}
-                        <a href="{% url 'account_signup' %}" class="btn btn-outline-light btn-lg">Register</a>
-                        <a href="{% url 'account_login' %}" class="btn btn-outline-light btn-lg">Log In</a>
-                        {% endif %}
-                    </div>
+<!-- Hero Section -->
+<section class="container">
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 class="display-4 fw-bold text-body-emphasis">ReadsReviews</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Want to share your reviews with other bookworms? Join us!</p>
+            {% if user.is_authenticated %}
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                    <a class="btn btn-primary btn-lg px-4 me-sm-3" ref="{% url 'add_review' %}">Post a review</a>
                 </div>
+            {% else %}
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'account_signup' %}">Register</a>
+                    <a class="btn btn-outline-secondary btn-lg px-4" href="{% url 'account_login' %}">Log In</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="overflow-hidden" style="max-height: 30vh;">
+            <div class="container px-5">
+                <img src="{% static 'images/hero-image.jpg' %}" class="img-fluid border rounded-3 shadow-lg mb-4"
+                    alt="Hero image" width="700" height="500" loading="lazy">
             </div>
         </div>
     </div>
 </section>
 
-<!-- ======= Post Grid Section ======= -->
-<section id="posts" class="posts">
-    <div class="container">
-        <div class="row g-5">
-            {% for review in bookreview_list %}
-            <div class="col-lg-6">
-                <div class="post-entry-1 lg">
-                    <a href="{% url 'review_detail' review.slug %}">
-                        {% if "placeholder" in review.book_cover.url %}
-                        <img src="{% static 'img/default_bookcover.jpg' %}" alt="placeholder image" class="img-fluid">
-                        {% else %}
-                        <img src="{{ review.book_cover.url }}" alt="{{ review.book_title }}" class="img-fluid">
-                        {% endif %}
+<!-- Reviews Grid Section -->
+<section class="container">
+    <div class="row mb-2">
+        {% for review in bookreview_list %}
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">{{ review.book_genre }}</strong>
+                    <h3 class="mb-0"><a href="{% url 'review_detail' review.slug %}">{{ review.book_title }}</a></h3>
+                    <h4 class="mb-0">{{ review.book_author }}</h4>
+                    <div class="mb-1 text-body-secondary">{{ review.created_on }}</div>
+                    <p class="card-text mb-auto">Rating: {{ review.book_rating }} out of 5.</p>
+                    <a href="{% url 'profile_page' review.reviewer.profile.id %}"
+                        class="icon-link gap-1 icon-link-hover">
+                        Reviewed by: {{ review.reviewer }}
                     </a>
-                    <div class="post-meta"><span class="date">{{ review.book_genre }}</span> <span class="mx-1">&bullet;</span>
-                        <span>{{ review.created_on }}</span></div>
-                    <h2><a href="{% url 'review_detail' review.slug %}">{{ review.book_title }}</a></h2>
-                    <p class="mb-4 d-block">
-                        Blurb: {{ review.book_blurb | safe | linebreaks }}
-                    </p>
-                    <div class="d-flex align-items-center author">
-                        <div class="name">
-                            <h3 class="m-0 p-0">Reviewed by: 
-                                <a href="{% url 'profile_page' review.reviewer.profile.id %}">{{ review.reviewer }}</a>
-                            </h3>
-                        </div>
-                    </div>
+                </div>
+                <div class="col-md-4">
+                    {% if "placeholder" in review.book_cover.url %}
+                        <img src="{% static 'images/default_bookcover.jpg' %}" class="img-fluid rounded-start"
+                            alt="placeholder image">
+                    {% else %}
+                        <img src="{{ review.book_cover.url }}" class="img-fluid rounded-start"
+                            alt="{{ review.book_title }} book cover">
+                    {% endif %}
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:2 %}
         </div>
-        <div class="row g-5">
-            {% endif %}
-            {% endfor %}
-        </div>
+        {% if forloop.counter|divisibleby:2 %}
+    </div>
+    <div class="row mb-2">
+        {% endif %}
+        {% endfor %}
     </div>
 
-    <!-- ======= Pagination ======= -->
+    <!-- Pagination -->
     {% block pagination %}
-    <div class="text-center py-4">
-        <div class="custom-pagination">
-            {% if page_obj.has_previous %}
-            <a href="?page=1" class="prev">
-                First
-            </a>
-            <a href="?page={{ page_obj.previous_page_number }}" class="prev">
-                Previous
-            </a>
-            {% endif%}
+        <nav aria-label="Reviews preview home pages">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
 
-            <a class="active">{{page_obj.number}}</a>
-            <a style="pointer-events: none">of {{page_obj.paginator.num_pages}}</a>
+                <li class="page-item active"><a class="page-link">{{page_obj.number}}</a></li>
+                <li class="page-item"><a class="page-link">of</a></li>
+                <li class="page-item"><a class="page-link">{{page_obj.paginator.num_pages}}</a></li>
 
-            {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="next">
-                Next
-            </a>
-            <a href="?page={{ page_obj.paginator.num_pages }}" class="next">
-                Last
-            </a>
-            {% endif%}
-        </div>
-    </div>
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
     {% endblock %}
 </section>
 
-<!-- index.html content ends here -->
 {% endblock %}
