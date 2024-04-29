@@ -14,70 +14,130 @@
 
 {% block content %}
 
-{% if user.is_authenticated and user.id == profile_page.user_profile.id %}
-    <h1>My Profile Page</h1>
-{% else %}
-    <h1>{{ profile_page.user_profile.username }}'s Profile Page</h1>
-{% endif %}
-
-<div>
-    {% if "placeholder" in profile_page.profile_photo.url %}
-        <img src="{% static 'img/nobody.jpg' %}" alt="default profile photo" class="card-img">
-    {% else %}
-        <img src="{{ profile_page.profile_photo.url }}" alt="user profile photo" class="card-img">
-    {% endif %}
-</div>
-<div>
-    {% if profile_page.bio %}
-        <p>{{ profile_page.bio }}</p>
-    {% else %}
-        <p>No bio yet.</p>
-    {% endif %}
-</div>
-
-{% if user.is_authenticated and user.id == profile_page.user_profile.id %}
-    <div>
-        <a href="{% url 'edit_profile_page' user.profile.id %}" class="btn btn-secondary">
-            Edit Profile Page
-        </a>
-    </div>
-{% endif %}
-
-{% if user.is_authenticated and user.id == profile_page.user_profile.id %}
-    <h2>My Published Reviews</h2>
-{% else %}
-    <h2>{{ profile_page.user_profile.username }}'s Reviews</h2>
-{% endif %}
-
-<ul>
-    {% for review in user_reviews %}
-        <li>
-            <a href="{% url 'review_detail' review.slug %}">
-                {{ review.book_title }} by {{ review.book_author }} - Rating: {{ review.book_rating }} out of 5 stars.
-            </a>
-        </li>
-    {% empty %}
-        <li>No reviews yet.</li>
-    {% endfor %}
-</ul>
-
-{% if user.is_authenticated and user.id == profile_page.user_profile.id %}
-    <h2>My Draft Reviews</h2>
-    {% if user_draft_reviews %}
-        <ul>
-            {% for review in user_draft_reviews %}
-                <li>
-                    <a href="{% url 'edit_review' review.id %}">
-                        {{ review.book_title }} by {{ review.book_author }} - Rating: {{ review.book_rating }} out of 5 stars.
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <div>
-            You have no draft reviews.
+<!-- Profile -->
+<section class="container">
+    <div class="row mb-2 justify-content-center text-center">
+        <div class="col-md-12 col-lg-8">
+            {% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+                <h1>My Profile Page</h1>
+            {% else %}
+                <h1>{{ profile_page.user_profile.username }}'s Profile Page</h1>
+            {% endif %}
         </div>
+    </div>
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-md-9 col-lg-7 col-xl-5">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-4">
+                        <div class="d-flex text-black">
+                            <!-- Profile photo -->
+                            <div>
+                                {% if "placeholder" in profile_page.profile_photo.url %}
+                                    <img src="{% static 'images/nobody.jpg' %}"
+                                        alt="default profile photo" class="img-fluid"
+                                        style="width: 180px; border-radius: 10px;">
+                                {% else %}
+                                    <img src="{{ profile_page.profile_photo.url }}"
+                                        alt="{{ profile_page.user_profile.username }}'s profile photo" class="img-fluid"
+                                        style="width: 180px; border-radius: 10px;">
+                                {% endif %}
+                            </div>
+                            <!-- Profile usernmane and bio -->
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">{{ profile_page.user_profile.username }}</h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">Bio</p>
+                                <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                                    style="background-color: #efefef;">
+                                    <div>
+                                        {% if profile_page.bio %}
+                                            <p class="small text-muted mb-1">{{ profile_page.bio }}</p>
+                                        {% else %}
+                                            <p class="small text-muted mb-1">No bio yet</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+                                    <div class="d-flex pt-1">
+                                        <a href="{% url 'edit_profile_page' user.profile.id %}"
+                                            class="btn btn-warning me-1 flex-grow-1">
+                                            Edit Profile
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- List of reviews -->
+<section class="container">
+    <!-- Published reviews -->
+    {% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+        <h6 class="bg-body-tertiary p-2 border-top border-bottom">My Published Reviews</h6>
+    {% else %}
+        <h6 class="bg-body-tertiary p-2 border-top border-bottom">
+            {{ profile_page.user_profile.username }}'s Reviews
+        </h6>
     {% endif %}
-{% endif %}
+
+    <ul class="list-group list-group-light mb-4">
+        {% for review in user_reviews %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="ms-3">
+                        <a href="{% url 'review_detail' review.slug %}" class="fw-bold mb-1">
+                            {{ review.book_title }}
+                        </a>
+                        <p class="text-muted mb-0">{{ review.book_author }}</p>
+                    </div>
+                </div>
+                {% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+                    <a class="btn btn-link btn-rounded btn-sm" href="{% url 'edit_review' review.id %}">Edit</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">No reviews yet</p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Draft reviews -->
+    {% if user.is_authenticated and user.id == profile_page.user_profile.id %}
+        <h6 class="bg-body-tertiary p-2 border-top border-bottom">My Draft Reviews</h6>
+        {% if user_draft_reviews %}
+            <ul class="list-group list-group-light">
+                {% for review in user_draft_reviews %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">{{ review.book_title }}</p>
+                                <p class="text-muted mb-0">{{ review.book_author }}</p>
+                            </div>
+                        </div>
+                        <a class="btn btn-link btn-rounded btn-sm" href="{% url 'edit_review' review.id %}">Edit</a>
+                    </li>
+                {% endfor %}
+        {% else %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">You have no draft reviews</p>
+                    </div>
+                </div>
+            </li>
+        {% endif %}
+    {% endif %}
+</section>
 
 {% endblock %}
