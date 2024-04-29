@@ -411,3 +411,32 @@ python3 manage.py createsuperuser
 ```
 pip3 install -r requirements/txt
 ```
+
+## Credits
+
+### Coding
+
+- This project was inspired by the following Django tutorials:
+    - Django Blog walkthrough tutorial by [Code Institute](https://codeinstitute.net/)
+    - [Create a Simple Django Blog](https://youtube.com/playlist?list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi&si=nC4kLnoe3KxXPus1) by [Codemy](https://www.youtube.com/@Codemycom)
+    - [Python Django Tutorial for Beginners](https://youtube.com/playlist?list=PL0Zuz27SZ-6NamGNr7dEqzNFEcZ_FAUVX&si=JgpwOiNdsu7mpkno) by [Dave Gray](https://www.youtube.com/@DaveGrayTeachesCode)
+- For prepopulating the slug field using slugify in a Django form, this [stackoverflow thread](https://stackoverflow.com/questions/55314246/pre-populate-slug-field-into-a-form-field-of-a-django-site) was consulted.
+- For defensive mechanism against unauthorised access, this [stackoverflow thread](https://stackoverflow.com/questions/40894567/django-updateview-dispatch-reduce-the-number-of-queries) was consulted.
+- For implementing signals and receivers for automating profile creation when a user registers and linking both, my mentor [Juliia Konovalova](https://github.com/IuliiaKonovalova) showed me how using her own code as an example.
+- For using the Django extension pygraphviz, this [article](https://yathomasi.medium.com/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16) was consulted.
+- For styling the website, the following resources were consulted:
+    - [Bootstrap 5 examples](https://getbootstrap.com/docs/5.3/examples/)
+    - This [article](https://realpython.com/django-pagination/#djangos-built-in-paginator) for the pagination
+    - This [webpage](https://mdbootstrap.com/docs/standard/extended/comments/) for the comments section
+    - This [webpage](https://mdbootstrap.com/docs/standard/extended/profiles/) for the profile page
+    - This [webpage](https://mdbootstrap.com/docs/standard/components/list-group/) for displaying reviews as list on the profile page
+
+### Images
+
+- The hero image is by [Jonathan Singer](https://unsplash.com/@jbsinger1970?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/library-interioe-NgU7IJ5XuyY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash).
+- The image used for default book cover is by [Medamodifier](https://unsplash.com/@mediamodifier?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/white-paper-on-white-surface-pSay3DJpVEY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+- Any other book cover images used are from [Goodreads](https://www.goodreads.com/).
+- The image used for default profile photo is from the Django walkthrough by [Code Institute](https://codeinstitute.net/)
+- The title icon is from [Flaticon](https://www.flaticon.com/free-icons/reading).
+- Favicon was generated from [favicon](https://favicon.io/).
+- [Fontjoy](https://fontjoy.com/) was used to find font pairings.
