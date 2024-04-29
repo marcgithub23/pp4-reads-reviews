@@ -198,3 +198,216 @@ STATUS = 0: draft, 1: published
 | email  | EmailField | n/a |
 | message  | TextField | n/a |
 | read  | BooleanField | default=False |
+
+
+---
+
+
+## Deployment
+
+
+This project is deployed on [Heroku](https://www.heroku.com/). Below are the steps taken.
+### Setup
+#### Prepare your IDE
+1. Install dj_database_url and psycopg2
+```
+pip3 install dj_database_url==0.5.0 psycopg2
+```
+2. At this point if using Cloudinary you can install now
+```
+pip3 install dj3-cloudinary-storage
+```
+3. Create your requirements.txt file
+```
+pip3 freeze -- local > requirements.txt
+```
+4. Create your Django project
+```
+django-admin startproject myprojectname .
+```
+5. Create your first project app
+```
+python3 manage.py startapp myappname
+```
+6. Add your new app to installed apps in your project settings.py
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'myappname',
+]
+```
+7. Ensure all files are saved
+8. Migrate
+```
+python3 manage.py migrate
+```
+
+### Database Setup
+
+1. Visit [ElephantSQL](https://www.elephantsql.com/)
+2. Select 'Create New Instance'
+3. Give your new plan a name
+4. Select the Tiny Turtle (Free) plan - (leave tag fields blank)
+5. Select region
+6. Review and 'Create Instance'
+7. From the dashboard click on your new instance's name
+8. Copy the URL
+
+### Deployment
+#### Prepare Heroku
+
+1. Visit [Heroku](https://dashboard.heroku.com/apps)
+2. Select 'New' and 'Create New App'
+3. Name the app
+4. Select region and 'Create App'
+
+#### env.py file
+
+1. Create a new file called 'env.py' in the root directory of your project
+2. Add the following code:
+```
+import os
+
+os.environ['DATABASE_URL'] = 'paste_url_from_elephantsql_here'
+os.environ['SECRET_KEY'] = 'create_a_secret_key_here'
+```
+
+#### settings.py
+1. At the top of settings.py just below the Path import, add the following code:
+```
+import os
+import dj_database_url
+if os.path.isfile('env.py'):
+    import env
+```
+2. Remove the SECRET_KEY that is in settings and replace with:
+```
+SECRET_KEY = os.environ.get('SECRET_KEY')
+```
+3. Comment out the original DATABASES variable and replace with:
+```
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
+```
+4. Migrate
+```
+python3 manage.py migrate
+```
+
+#### If using Cloudinary
+1. Visit [Cloudinary](https://cloudinary.com/) and set up account
+2. Copy API environment variable
+3. In env.py add:
+```
+os.environ['CLOUDINARY_URL'] = 'your_cloudinary_api' 
+```
+4. In settings.py add cloudinary_storage and cloudinary to installed apps
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
+    'myappname',
+]
+```
+5. Near the end of settings.py add:
+```
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+```
+
+#### Heroku Config Vars
+1. Go to your Heroku Dashboard
+2. Go to your app and select 'Settings'
+3. Click 'Add config vars'
+4. Enter the following:
+```
+DATABASE_URL : your_elephantsql_url
+SECRET_KEY : your_secret_key
+PORT: 8000
+DISABLE_COLLECTSTATIC : 1
+CLOUDINARY_URL : your_cloudinary_url
+```
+
+#### Templates
+1. In settings.py, find BASE_DIR amd add:
+```
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+```
+2. Midway down your settings.py file change the DIRS to:
+```
+[TEMPLATES_DIR]
+```
+
+#### Allowed Hosts
+1. In settings.py, add to 'Allowed Hosts':
+```
+'myherokuappname.herokuapp.com',
+'localhost'
+```
+
+#### Add additional files
+1. Create 'templates' and 'static' files
+2. Add a Procfile (ensure has an uppercase 'P'), with the following line:
+```
+web: gunicorn myprojectname.wsgi
+```
+
+### Deployment
+1. Go to Heroku
+2. Open your app and select 'Deploy'
+3. Select Github as the deployment method
+4. Find the correct repository and connect
+5. Deploy Branch
+
+When you deploy it is vital that you do not have DEBUG set to True. To overcome this while simultaneously working in the IDE and being deployed you can:
+1. In settings.py replace DEBUG=True with:
+```
+DEBUG = 'DEBUG' in os.environ
+```
+2. In your env.py file add:
+```
+os.environ['DEBUG'] = '1'
+```
+
+### Create a Superuser
+1. In the terminal of your IDE type the following command:
+```
+python3 manage.py createsuperuser
+```
+2. Follow the terminal instructions to set up a password
+
+### Fork
+
+1. Visit [GitHub](https://github.com/) and login/register an account
+2. Go to the repository page for [ReadsReviews](https://github.com/marcgithub23/pp4-reads-reviews) - (You can also use the search bar)
+3. Select 'Fork' at the top right of the page
+
+### Clone
+
+1. Follow the first 2 steps to Fork
+2. Select 'Code' dropdown and choose the clone option your require
+3. Copy the command that is created
+4. Go to your IDE and in the terminal and paste the command
+5. To install the packages needed input the following code in the terminal:
+```
+pip3 install -r requirements/txt
+```
