@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- 500 error message -->
+<section>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                500 Error
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Internal Server Error</h5>
+                <p class="card-text">
+                    Whoops! Looks like we've encountered a plot twist in our server saga!
+                    Our sincerest apologies for the 500 error.
+                    It seems our servers are currently lost in the labyrinth of literature.
+                    In the meantime, feel free to go back to the homepage,
+                    brew a cup of tea, grab your favorite book, and let the pages transport
+                    you to a world where errors are but a footnote in the grand tale of reading.
+                </p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
