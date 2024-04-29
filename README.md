@@ -35,6 +35,23 @@ Developed for book lovers, the app is designed to be easy to use and intuitive. 
 ---
 
 
+## Agile Methodology
+
+GitHub Project Management was used to manage this project via its kanban board feature.
+
+Link to the [kanban board](https://github.com/users/marcgithub23/projects/2).
+![GitHub Project Management kanban board](documentation/github-kanban.png)
+
+[Link](https://github.com/marcgithub23/pp4-reads-reviews/issues?q=is%3Aissue+is%3Aclosed) to the completed and closed user stories.
+![Closed user stories](documentation/closed-userstories.png)
+
+[Link](https://github.com/marcgithub23/pp4-reads-reviews/issues?q=is%3Aopen+is%3Aissue) to uncompleted and open user stories in the backlog, which will be implemented as future features.
+![Open user stories](documentation/open-userstories.png)
+
+
+---
+
+
 ## Technologies Used
 
 - ### Languages:
