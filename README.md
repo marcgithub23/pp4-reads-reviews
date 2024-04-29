@@ -30,3 +30,45 @@ Developed for book lovers, the app is designed to be easy to use and intuitive. 
 |[#10](https://github.com/marcgithub23/pp4-reads-reviews/issues/10)|As a Site User I can visit the about page so that I can read about the purpose of the website.|
 |[#11](https://github.com/marcgithub23/pp4-reads-reviews/issues/11)|As a Site User I can fill out and submit a feedback form on the about page so that I can make suggestions to the site owner.|
 |[#12](https://github.com/marcgithub23/pp4-reads-reviews/issues/12)|As a Site Owner I can access feedback forms submitted so that I can review them.|
+
+
+---
+
+
+## Technologies Used
+
+- ### Languages:
+    
+    + [Python](https://www.python.org/): the primary language used to develop the server-side of the website.
+    + [JS](https://www.javascript.com/): the primary language used to develop interactive components of the website.
+    + [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML): the markup language used to create the website.
+    + [CSS](https://developer.mozilla.org/en-US/docs/Web/css): the styling language used to style the website.
+
+- ### Frameworks and libraries:
+
+    + [Django](https://www.djangoproject.com/): python framework used to create all the logic.
+
+- ### Databases:
+
+    + [ElephantSQL](https://www.elephantsql.com/): the database used to store all the data.
+
+- ### Other tools:
+
+    + [Git](https://git-scm.com/): the version control system used to manage the code.
+    + [Pip3](https://pypi.org/project/pip/): the package manager used to install the dependencies.
+    + [Gunicorn](https://gunicorn.org/): the webserver used to run the website.
+    + [Spycopg2](https://www.python.org/dev/peps/pep-0249/): the database driver used to connect to the database.
+    + [Django-allauth](https://django-allauth.readthedocs.io/en/latest/): the authentication library used to create the user accounts.
+    + [Django-crispy-forms](https://django-cryptography.readthedocs.io/en/latest/) was used to control the rendering behavior of Django forms.
+    + [Heroku](https://www.heroku.com/): the cloud platform used to host the website.
+    + [GitHub](https://github.com/) was used to host the website's source code.
+    + [VSCode](https://code.visualstudio.com/): the IDE used to develop the website.
+    + [Chrome DevTools](https://developer.chrome.com/docs/devtools/open/) was used to debug the website.
+    + [Bootstrap 5](https://getbootstrap.com/) was used for the majority of CSS styling for the website.
+    + [Bootstrap Icons](https://icons.getbootstrap.com/) was used for icons used in the website.
+    + [LucidChart](https://www.lucidchart.com/) was used to make an ERD to plan the models at the very start of this project.
+    + [TinyPNG](https://tinypng.com/) was used to optimise images for the website.
+    + [W3C Validator](https://validator.w3.org/) was used to validate HTML5 code for the website.
+    + [W3C CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS code for the website.
+    + [JShint](https://jshint.com/) was used to validate JS code for the website.
+    + [Code Institute's CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate the PY files.
