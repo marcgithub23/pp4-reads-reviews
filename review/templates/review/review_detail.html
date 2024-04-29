@@ -76,7 +76,7 @@
                 <div class="d-flex flex-start mb-4">
                     {% if "placeholder" in user.profile.profile_photo.url %}
                         <img class="d-none d-lg-block rounded-circle shadow-1-strong me-3"
-                            src="{% static 'img/nobody.jpg' %}" alt="default profile photo" width="65" height="65">
+                            src="{% static 'images/nobody.jpg' %}" alt="default profile photo" width="65" height="65">
                     {% else %}
                         <img class="d-none d-lg-block rounded-circle shadow-1-strong me-3"
                             src="{{ profile_page.profile_photo.url }}" alt="user profile photo" width="65" height="65">
