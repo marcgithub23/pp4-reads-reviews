@@ -72,3 +72,49 @@ Developed for book lovers, the app is designed to be easy to use and intuitive. 
     + [W3C CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS code for the website.
     + [JShint](https://jshint.com/) was used to validate JS code for the website.
     + [Code Institute's CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate the PY files.
+
+
+---
+
+
+## Design
+
+The website's design adheres to the principles of Material Design. Emphasizing simplicity of use, all components are crafted for ease of interaction. Employing a minimalistic approach, meaningful design without distraction is delivered. White space enhances user experience and intuitiveness.
+
+### Colour Scheme
+
+The primary colour of the website is white with black as text colour. Grey, blue, green, yellow, and red colours are used for buttons, such as post, submit, edit, update, delete, sign up, log in, and log out. This contributes to a straightforward design and therefore helps users to use and navigate around the website easily.
+
+### Typography
+
+Google Fonts Martel, Yrsa, and PT Sans Caption were used for h1, h2, and p elements respectively. These fonts are consistent with the simplistic and minimalistic design of the website.
+
+![Martel typography](documentation/typography.png)
+![Yrsa typography](documentation/typography2.png)
+![PT Sans Caption typography](documentation/typography3.png)
+
+### Wireframes
+
+#### Phone devices:
+
+- [Phone home page wireframe](documentation/phone-homepage.png)
+- [Phone about page wireframe](documentation/phone-aboutpage.png)
+- [Phone profile page wireframe](documentation/phone-profilepage.png)
+- [Phone review page wireframe](documentation/phone-reviewpage.png)
+- [Phone comments section wireframe](documentation/phone-commentsection.png)
+
+#### Tablet devices:
+
+- [Tablet home page wireframe](documentation/tablet-homepage.png)
+- [Tablet about page wireframe](documentation/tablet-aboutpage.png)
+- [Tablet profile page wireframe](documentation/tablet-profilepage.png)
+- [Tablet review page wireframe](documentation/tablet-reviewpage.png)
+- [Tablet comments section wireframe](documentation/tablet-commentsection.png)
+
+#### Laptop or desktop devices:
+
+- [Large screens home page wireframe](documentation/large-homepage.png)
+- [Large screens about page wireframe](documentation/large-aboutpage.png)
+- [Large screens profile page wireframe](documentation/large-profilepage.png)
+- [Large screens review page wireframe](documentation/large-reviewpage.png)
+- [Large screens comments section wireframe](documentation/large-commentsection.png)
