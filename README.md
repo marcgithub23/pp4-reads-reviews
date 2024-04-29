@@ -66,6 +66,7 @@ Developed for book lovers, the app is designed to be easy to use and intuitive. 
     + [Chrome DevTools](https://developer.chrome.com/docs/devtools/open/) was used to debug the website.
     + [Bootstrap 5](https://getbootstrap.com/) was used for the majority of CSS styling for the website.
     + [Bootstrap Icons](https://icons.getbootstrap.com/) was used for icons used in the website.
+    + [Canva](https://www.canva.com/) was used to create wireframes for the website.
     + [LucidChart](https://www.lucidchart.com/) was used to make an ERD to plan the models at the very start of this project.
     + [TinyPNG](https://tinypng.com/) was used to optimise images for the website.
     + [Cloudinary](https://cloudinary.com/) was used to store images in the website.
