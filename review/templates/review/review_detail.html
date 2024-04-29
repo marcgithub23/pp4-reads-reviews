@@ -5,85 +5,118 @@
 
 {% block content %}
 
-<section class="single-post-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 post-content">
-                <!-- ======= Single Post Content ======= -->
-                <div class="single-post">
-                    <div class="post-meta"><span class="date">{{ review.book_genre }}</span> <span class="mx-1">&bullet;</span>
-                        <span>{{ review.created_on }}</span></div>
-                    <div class="my-4">
-                        {% if "placeholder" in review.book_cover.url %}
-                        <img src="{% static 'img/default_bookcover.jpg' %}" alt="placeholder image" class="img-fluid">
-                        {% else %}
-                        <img src="{{ review.book_cover.url }}" alt="{{ review.book_title }}" class="img-fluid">
-                        {% endif %}
-                    </div>
-                    <h1 class="mb-5">{{ review.book_title }}</h1>
-                    <h4>Author:</h4>
-                    <p>{{ review.book_author }}</p>
-                    <h4>Reviewer rating:</h4>
-                    <p>{{ review.book_rating }} out of 5</p>
-                    <h4>Reviewed by:</h4>
-                    <p>
-                        <a href="{% url 'profile_page' review.reviewer.profile.id %}">
-                            {{ review.reviewer }}
-                        </a>
-                    </p>
-                    <h4>Blurb:</h4>
-                    <p>{{ review.book_blurb | safe }}</p>
-                    <h4>Review:</h4>
-                    <p>{{ review.book_review|safe }}</p>
+<!-- Review -->
+<section class="container">
+    <!-- Preview card -->
+    <div class="row mb-2 justify-content-center">
+        <div class="col-md-12 col-lg-8">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">{{ review.book_genre }}</strong>
+                    <h3 class="mb-0">{{ review.book_title }}</h3>
+                    <h4 class="mb-0">{{ review.book_author }}</h4>
+                    <div class="mb-1 text-body-secondary">{{ review.created_on }}</div>
+                    <p class="card-text mb-auto">Rating: {{ review.book_rating }} out of 5.</p>
+                    <a href="{% url 'profile_page' review.reviewer.profile.id %}"
+                        class="icon-link gap-1 icon-link-hover">
+                        Reviewed by: {{ review.reviewer }}
+                    </a>
                 </div>
-                {% if user.is_authenticated and user.id == review.reviewer.id %}
-                    <a href="{% url 'edit_review' review.id %}" class="btn btn-secondary">Edit review</a>
-                    <a href="{% url 'delete_review' review.id %}" class="btn btn-secondary">Delete review</a>
-                {% endif %}
-                <!-- ======= End Single Post Content ======= -->
+                <div class="col-md-4">
+                    {% if "placeholder" in review.book_cover.url %}
+                    <img src="{% static 'images/default_bookcover.jpg' %}" class="img-fluid rounded-start"
+                        alt="placeholder image">
+                    {% else %}
+                    <img src="{{ review.book_cover.url }}" class="img-fluid rounded-start"
+                        alt="{{ review.book_title }} book cover">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- ======= Comments ======= -->
-                <div class="comments">
-                    <h5 class="comment-title py-4">
-                        {{ comment_count }} Comments
-                    </h5>
-                    {% for comment in comments %}
-                    <div class="comment d-flex mb-4">
-                        <div class="flex-grow-1 ms-2 ms-sm-3">
-                            <div class="comment-meta d-flex align-items-baseline">
-                                <h6 class="me-2">{{ comment.commenter }}</h6>
-                                <span class="text-muted">({{ comment.created_on }})</span>
+    <!-- Blurb card -->
+    <div class="row mb-2 justify-content-center">
+        <div class="col-md-12 col-lg-8">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">Blurb</strong>
+                    <p class="card-text mb-auto">{{ review.book_blurb | safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review card -->
+    <div class="row mb-2 justify-content-center">
+        <div class="col-md-12 col-lg-8">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">Review</strong>
+                    <p class="card-text mb-auto">{{ review.book_review | safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Comments -->
+<section class="container">
+    <div class="container my-5 py-5 text-body">
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <h5 class="comment-title py-4">
+                    <i class="bi bi-chat-text"></i> {{ comment_count }} Comments
+                </h5>
+                {% for comment in comments %}
+                <div class="d-flex flex-start mb-4">
+                    {% if "placeholder" in user.profile.profile_photo.url %}
+                        <img class="d-none d-lg-block rounded-circle shadow-1-strong me-3"
+                            src="{% static 'img/nobody.jpg' %}" alt="default profile photo" width="65" height="65">
+                    {% else %}
+                        <img class="d-none d-lg-block rounded-circle shadow-1-strong me-3"
+                            src="{{ profile_page.profile_photo.url }}" alt="user profile photo" width="65" height="65">
+                    {% endif %}
+                    <div class="card w-100">
+                        <div class="card-body p-4">
+                            <div class="">
+                                <h5>{{ comment.commenter }}</h5>
+                                <p class="small">{{ comment.created_on }}</p>
+                                <div id="comment{{ comment.id }}">{{ comment.body | linebreaks }}</div>
+                                {% if user.is_authenticated and comment.commenter == user %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-edit btn-warning"
+                                        data-comment_id="{{ comment.id }}">Edit</button>
+                                    <button class="btn btn-delete btn-danger"
+                                        data-comment_id="{{ comment.id }}">Delete</button>
+                                </div>
+                                {% endif %}
                             </div>
-                            <div id="comment{{ comment.id }}" class="comment-body">
-                                {{ comment.body | linebreaks }}
-                            </div>
-                            {% if user.is_authenticated and comment.commenter == user %}
-                            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
-                            <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
-                            {% endif %}
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
-                <!-- ======= End Comments ======= -->
+                {% endfor %}
+            </div>
 
-                <!-- ======= Comments Form ======= -->
-                <div class="col-md-4 card mb-4 mt-3">
-                    <div class="card-body">
-                        {% if user.is_authenticated %}
-                        <h3>Leave a comment:</h3>
-                        <p>Posting as: {{ user.username }}</p>
-                        <form id="commentForm" method="post" style="margin-top: 1.3em;">
-                            {{ comment_form | crispy }}
-                            {% csrf_token %}
-                            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                        </form>
-                        {% else %}
-                        <p>Log in to leave a comment</p>
-                        {% endif %}
-                    </div>
+            <!-- Comment form -->
+            <div class="col-md-4 col-lg-6 col-xl-4 card mb-4 mt-3">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h3>Leave a comment:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button id="submitButton" type="submit"
+                            class="btn btn-signup btn-success btn-lg">Submit</button>
+                    </form>
+                    {% else %}
+                    <p>
+                        <a class="btn btn-outline-secondary mx-2 px-4" href="{% url 'account_login' %}">Log In</a>
+                        to leave a comment.
+                    </p>
+                    {% endif %}
                 </div>
-                <!-- ======= End Comments Form ======= -->
             </div>
         </div>
     </div>
