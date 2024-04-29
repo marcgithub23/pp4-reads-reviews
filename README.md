@@ -68,6 +68,8 @@ Developed for book lovers, the app is designed to be easy to use and intuitive. 
     + [Bootstrap Icons](https://icons.getbootstrap.com/) was used for icons used in the website.
     + [LucidChart](https://www.lucidchart.com/) was used to make an ERD to plan the models at the very start of this project.
     + [TinyPNG](https://tinypng.com/) was used to optimise images for the website.
+    + [Cloudinary](https://cloudinary.com/) was used to store images in the website.
+    + [CKEditor](https://ckeditor.com/) was used to add a rich text editor on the front end.
     + [W3C Validator](https://validator.w3.org/) was used to validate HTML5 code for the website.
     + [W3C CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS code for the website.
     + [JShint](https://jshint.com/) was used to validate JS code for the website.
