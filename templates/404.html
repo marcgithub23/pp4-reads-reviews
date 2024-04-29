@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- 404 error message -->
+<section>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                404 Error
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Page Not Found</h5>
+                <p class="card-text">
+                    Oops! This page is like a lost bookmark—nowhere to be found.
+                    But don't worry, there are plenty of other pages worth reading.
+                    Head back to the homepage to find your next great read!
+                </p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
