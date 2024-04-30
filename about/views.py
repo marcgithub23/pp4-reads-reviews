@@ -1,16 +1,14 @@
-from django.shortcuts import render
 from django.contrib import messages
-from .models import About, Feedback
+from django.shortcuts import render
+
 from .forms import FeedbackForm
+from .models import About
 
 # Create your views here.
 
 
 def about_website(request):
-    """
-    Renders the About page
-    """
-
+    """Renders the About page"""
     if request.method == "POST":
         feedback_form = FeedbackForm(data=request.POST)
         if feedback_form.is_valid():
