@@ -11,7 +11,7 @@
 <!-- Delete review form -->
 {% if user.is_authenticated %}
     {% if user.id == bookreview.reviewer.id %}
-        <section>
+        <div>
             <div class="form-group">
                 <form method="POST">
                     {% csrf_token %}
@@ -20,7 +20,7 @@
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
-        </section>
+        </div>
     {% else %}
         <div>
             You are not authorised to delete this review.

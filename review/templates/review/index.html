@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- Hero Section -->
-<section class="container">
+<div class="container">
     <div class="px-4 pt-5 my-5 text-center border-bottom">
         <h1 class="display-4 fw-bold text-body-emphasis">ReadsReviews</h1>
         <div class="col-lg-6 mx-auto">
@@ -28,10 +28,10 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- Reviews Grid Section -->
-<section class="container">
+<div class="container">
     <div class="row mb-2">
         {% for review in bookreview_list %}
         <div class="col-md-6">
@@ -93,6 +93,6 @@
             </ul>
         </nav>
     {% endblock %}
-</section>
+</div>
 
 {% endblock %}
