@@ -90,6 +90,89 @@ Defensive coding has been applied for the CRUD functionalities of the website to
 ![Defensive coding](documentation/defensive-coding8.png)
 
 
+---
+
+
+## Validation
+
+### HTML Validation:
+
+When using the official [W3C](https://validator.w3.org/) validator, summernote rich text editor causes a stray closing p tag triggering errors.
+
+#### Homepage
+- ![Homepage validation](documentation/validation-homepage.png)
+- ![Homepage validation](documentation/validation-homepage2.png)
+
+#### About page
+- ![About page validation](documentation/validation-aboutpage.png)
+
+#### Book detail page
+- ![Book detail validation](documentation/validation-bookdetail.png)
+
+#### Profile page
+- ![Profile page validation](documentation/validation-profilepage.png)
+
+#### Add review page
+- ![Add review page validation](documentation/validation-addreview.png)
+
+#### Edit review page
+- ![Edit review page validation](documentation/validation-editreview.png)
+
+#### Delete review page
+- ![Delete review page validation](documentation/validation-deletereview.png)
+
+#### Edit account page
+- ![Edit account page validation](documentation/validation-editaccount.png)
+
+#### Edit profile page
+- ![Edit profile page validation](documentation/validation-editprofilepage.png)
+
+### CSS Validation:
+
+- ![CSS validation](documentation/validation-css.png)
+
+### Python Validation:
+
+#### About app
+
+- ![Admin validation](documentation/validation-about-admin-py.png)
+- ![Forms validation](documentation/validation-about-form-py.png)
+- ![Models validation](documentation/validation-about-models-py.png)
+- ![Urls validation](documentation/validation-about-urls-py.png)
+- ![Views validation](documentation/validation-about-views-py.png)
+
+#### Review app
+
+- ![Admin validation](documentation/validation-review-admin-py.png)
+- ![Forms validation](documentation/validation-review-forms-py.png)
+- ![Models validation](documentation/validation-review-models-py.png)
+- ![Urls validation](documentation/validation-review-urls-py.png)
+- ![Views validation](documentation/validation-review-views-py.png)
+
+### Userprofile app
+
+- ![Admin validation](documentation/validation-userprofile-admin-py.png)
+- ![Forms validation](documentation/validation-userprofile-forms.png)
+- ![Models validation](documentation/validation-userprofile-models-py.png)
+- ![Urls validation](documentation/validation-userprofile-urls-py.png)
+- ![Views validation](documentation/validation-userprofile-views-py.png)
+- ![Signals validation](documentation/validation-userprofile-signals-py.png)
+
+### Root/top level
+
+- ![Manage validation](documentation/validation-manage-py.png)
+
+### ReadsReviews main app
+
+The key value pair is too long to be truncated in less than 80 characters in one line.
+
+- ![Settings validation](documentation/validation-settings-py.png)
+- ![Urls validation](documentation/validation-main-urls-py.png)
+
+
+---
+
+
 ## Bugs
 
 ### Known bugs
