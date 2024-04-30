@@ -67,8 +67,7 @@
                 <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}"
-                                aria-current="{% if request.path == home_url %}page{% endif %}">
+                            <a class="nav-link" href="{% url 'home' %}">
                                 Home
                             </a>
                         </li>
@@ -85,26 +84,22 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="username-dropdown">
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'edit_account' %}"
-                                        aria-current="{% if request.path == edit_url %}page{% endif %}">
+                                    <a class="dropdown-item" href="{% url 'edit_account' %}">
                                         Edit Account
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'profile_page' user.profile.id %}"
-                                        aria-current="{% if request.path == profile_url %}page{% endif %}">
+                                    <a class="dropdown-item" href="{% url 'profile_page' user.profile.id %}">
                                         My Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'add_review' %}"
-                                        aria-current="{% if request.path == add_url %}page{% endif %}">
+                                    <a class="dropdown-item" href="{% url 'add_review' %}">
                                         Post a Review
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'account_logout' %}"
-                                        aria-current="{% if request.path == logout_url %}page{% endif %}">
+                                    <a class="dropdown-item" href="{% url 'account_logout' %}">
                                         Log Out
                                     </a>
                                 </li>
@@ -155,7 +150,8 @@
     <!-- Footer -->
     <div class="container">
         <footer class="py-3 my-4">
-            <p class="text-center text-body-secondary border-top pt-3 mt-3">&copy; 2024 ReadsReviews <small>(Educational purposes
+            <p class="text-center text-body-secondary border-top pt-3 mt-3">&copy; 2024 ReadsReviews <small>(Educational
+                    purposes
                     only)</small></p>
         </footer>
     </div>
