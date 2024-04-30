@@ -442,6 +442,10 @@ python3 manage.py createsuperuser
 pip3 install -r requirements/txt
 ```
 
+
+---
+
+
 ## Credits
 
 ### Coding
@@ -470,3 +474,12 @@ pip3 install -r requirements/txt
 - The title icon is from [Flaticon](https://www.flaticon.com/free-icons/reading).
 - Favicon was generated from [favicon](https://favicon.io/).
 - [Fontjoy](https://fontjoy.com/) was used to find font pairings.
+
+
+---
+
+
+## Acknowledgements
+
+- I would like to thank my mentor [Juliia Konovalova](https://github.com/IuliiaKonovalova) who has helped me complete the bulk of this project. Her continued support and guidance are the reason I have made it this far on the course.
+- I would also like to thank [Tim Nelson](https://github.com/TravelTimN) who stood in as a temporary substitute mentor for my final third call for this project. His invaluable and immensely helpful tips and advice gave me the motivation to push through and reach the finish line of this project.
