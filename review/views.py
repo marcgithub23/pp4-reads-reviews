@@ -1,19 +1,20 @@
-from django.shortcuts import render, get_object_or_404, reverse
-from django.urls import reverse_lazy
-from django.utils.text import slugify
-from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, reverse
+from django.urls import reverse_lazy
+from django.utils.text import slugify
+from django.views import generic
 
-from .models import BookReview, Comment
 from .forms import CommentForm, ReviewForm
+from .models import BookReview, Comment
 
 # Create your views here.
 
 
 class BookReviewList(generic.ListView):
+    '''View for homepage with a list of reviews'''
     queryset = BookReview.objects.filter(status=1)
     template_name = "review/index.html"
     paginate_by = 6
@@ -23,7 +24,7 @@ class AddReviewView(
     LoginRequiredMixin,
     SuccessMessageMixin,
     generic.CreateView):
-
+    '''View for adding reviews'''
     model = BookReview
     template_name = 'review/add_review.html'
     form_class = ReviewForm
@@ -57,6 +58,7 @@ class AddReviewView(
             self.instance.save()
             return super().form_valid(form)
 
+    # Defensive coding for adding review when not already logged in
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(
@@ -71,12 +73,13 @@ class DeleteReviewView(
     LoginRequiredMixin,
     SuccessMessageMixin,
     generic.DeleteView):
-
+    '''View for deleting reviews'''
     model = BookReview
     template_name = 'review/delete_review.html'
     success_url = reverse_lazy('home')
     success_message = 'Your review has been successfully deleted.'
 
+    # Defensive coding for deleting review when not already logged in
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(
@@ -84,6 +87,7 @@ class DeleteReviewView(
                 'Please log in to delete your review.')
             return HttpResponseRedirect(reverse('home'))
 
+        # Defensive coding for trying to delete a review without authorisation
         self.object = self.get_object()
         if self.object.reviewer != request.user:
             messages.error(
@@ -98,7 +102,7 @@ class EditReviewView(
     LoginRequiredMixin,
     SuccessMessageMixin,
     generic.UpdateView):
-
+    '''View for editing reviews'''
     model = BookReview
     template_name = 'review/edit_review.html'
     form_class = ReviewForm
@@ -121,6 +125,7 @@ class EditReviewView(
         self.instance.save()
         return super().form_valid(form)
 
+    # Defensive coding for editing review when not already logged in
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(
@@ -128,6 +133,7 @@ class EditReviewView(
                 'Please log in to edit your review.')
             return HttpResponseRedirect(reverse('home'))
 
+        # Defensive coding for trying to edit a review without authorisation
         self.object = self.get_object()
         if self.object.reviewer != request.user:
             messages.error(
@@ -184,10 +190,7 @@ def review_detail(request, slug):
 
 
 def comment_edit(request, slug, comment_id):
-    """
-    View to edit comments
-    """
-
+    """View to edit comments"""
     if request.method == "POST":
         queryset = BookReview.objects.filter(status=1)
         book_review = get_object_or_404(queryset, slug=slug)
@@ -213,9 +216,7 @@ def comment_edit(request, slug, comment_id):
     return HttpResponseRedirect(reverse('review_detail', args=[slug]))
 
 def comment_delete(request, slug, comment_id):
-    """
-    View to delete comment
-    """
+    """View to delete comment"""
 
     queryset = BookReview.objects.filter(status=1)
     book_review = get_object_or_404(queryset, slug=slug)

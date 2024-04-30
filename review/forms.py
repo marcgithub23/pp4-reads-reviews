@@ -1,14 +1,17 @@
 from django import forms
+
 from .models import BookReview, Comment
 
 
 class CommentForm(forms.ModelForm):
+    '''Form used for posting comments'''
     class Meta:
         model = Comment
         fields = ('body',)
 
 
 class ReviewForm(forms.ModelForm):
+    '''Form used for adding and editing reviews'''
     class Meta:
         model = BookReview
         fields = (

@@ -1,18 +1,15 @@
-from django.db import models
-from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User
+from django.db import models
 
 # Create your models here.
 
 
 class BookReview(models.Model):
-    """
-    Stores a single book review entry related to :model:`auth.User`
-    """
+    """Stores a single book review entry related to :model:`auth.User`"""
 
     # Genre choices
-
     GENRE = [
         ("CLASSICS", "Classics"),
         ("CRIME", "Crime"),
@@ -26,7 +23,6 @@ class BookReview(models.Model):
     ]
 
     # Book rating choices
-
     BOOK_RATING = [
         (1, "1"),
         (2, "2"),
@@ -36,7 +32,6 @@ class BookReview(models.Model):
     ]
 
     # Status choices
-
     STATUS = ((0, "Draft"), (1, "Published"))
 
     slug = models.SlugField(max_length=200, unique=True)

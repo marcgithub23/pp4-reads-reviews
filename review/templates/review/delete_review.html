@@ -8,6 +8,7 @@
 
 {% block content %}
 
+<!-- Delete review form -->
 {% if user.is_authenticated %}
     {% if user.id == bookreview.reviewer.id %}
         <section>

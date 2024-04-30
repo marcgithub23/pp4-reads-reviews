@@ -79,7 +79,8 @@
                             src="{% static 'images/nobody.jpg' %}" alt="default profile photo" width="65" height="65">
                     {% else %}
                         <img class="d-none d-lg-block rounded-circle shadow-1-strong me-3"
-                            src="{{ comment.commenter.profile.profile_photo.url }}" alt="user profile photo" width="65" height="65">
+                            src="{{ comment.commenter.profile.profile_photo.url }}" alt="user profile photo" width="65"
+                            height="65">
                     {% endif %}
                     <div class="card w-100">
                         <div class="card-body p-4">
