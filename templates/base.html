@@ -53,9 +53,9 @@
             <div class="container-xxl">
                 <!-- navbar brand / title -->
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <h1 class="text-secondary fw-bold">
+                    <div class="text-secondary fw-bold fs-1">
                         ReadsReviews
-                    </h1>
+                    </div>
                 </a>
                 <!-- Toggle button for mobile nav -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
@@ -73,8 +73,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about' %}"
-                                aria-current="{% if request.path == about_url %}page{% endif %}">
+                            <a class="nav-link" href="{% url 'about' %}">
                                 About
                             </a>
                         </li>
@@ -113,14 +112,12 @@
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_signup' %}"
-                                aria-current="{% if request.path == signup_url %}page{% endif %}">
+                            <a class="nav-link" href="{% url 'account_signup' %}">
                                 Register
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_login' %}"
-                                aria-current="{% if request.path == login_url %}page{% endif %}">
+                            <a class="nav-link" href="{% url 'account_login' %}">
                                 Log In
                             </a>
                         </li>
@@ -134,7 +131,7 @@
     <!-- Main section -->
     <main id="main" class="container">
         <!-- Confirmation message -->
-        <section>
+        <div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -148,7 +145,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         {% block content %}
 
