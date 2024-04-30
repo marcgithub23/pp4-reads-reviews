@@ -97,6 +97,14 @@ Link to the [kanban board](https://github.com/users/marcgithub23/projects/2).
 ---
 
 
+## Features
+
+Please refer to the [FEATURES.md](FEATURES.md) file for all features-related documentation.
+
+
+---
+
+
 ## Design
 
 The website's design adheres to the principles of Material Design. Emphasizing simplicity of use, all components are crafted for ease of interaction. Employing a minimalistic approach, meaningful design without distraction is delivered. White space enhances user experience and intuitiveness.
