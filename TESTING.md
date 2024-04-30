@@ -129,9 +129,19 @@ When using the official [W3C](https://validator.w3.org/) validator, summernote r
 
 ### CSS Validation:
 
+The official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator was used to validate CSS.
+
 - ![CSS validation](documentation/validation-css.png)
 
+### JS Validation:
+
+The official [JSHint](https://www.jshint.com/) validator was used to validate JS.
+
+- ![JS validation](documentation/validation-js.png)
+
 ### Python Validation:
+
+Code Institute's [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate python.
 
 #### About app
 
