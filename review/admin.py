@@ -12,7 +12,7 @@ class BookReviewAdmin(SummernoteModelAdmin):
     list_display = ('book_title', 'slug', 'status', 'created_on')
     search_fields = ['book_title', 'book_review']
     list_filter = ('status', 'created_on',)
-    prepopulated_fields = {'slug': ('reviewer','book_title',)}
+    prepopulated_fields = {'slug': ('reviewer', 'book_title',)}
     summernote_fields = ('book_review',)
 
 

@@ -12,7 +12,7 @@ class About(models.Model):
     # Format how it is viewed in the admin panel
     def __str__(self):
         return self.title
-    
+
 
 class Feedback(models.Model):
     """Stores a single feedback message"""

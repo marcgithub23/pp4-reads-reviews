@@ -23,7 +23,8 @@ class BookReviewList(generic.ListView):
 class AddReviewView(
     LoginRequiredMixin,
     SuccessMessageMixin,
-    generic.CreateView):
+    generic.CreateView
+):
     '''View for adding reviews'''
     model = BookReview
     template_name = 'review/add_review.html'
@@ -65,14 +66,15 @@ class AddReviewView(
                 request,
                 'Please log in to add a review.')
             return HttpResponseRedirect(reverse('home'))
-        
+
         return super().dispatch(request, *args, **kwargs)
 
 
 class DeleteReviewView(
     LoginRequiredMixin,
     SuccessMessageMixin,
-    generic.DeleteView):
+    generic.DeleteView
+):
     '''View for deleting reviews'''
     model = BookReview
     template_name = 'review/delete_review.html'
@@ -101,7 +103,8 @@ class DeleteReviewView(
 class EditReviewView(
     LoginRequiredMixin,
     SuccessMessageMixin,
-    generic.UpdateView):
+    generic.UpdateView
+):
     '''View for editing reviews'''
     model = BookReview
     template_name = 'review/edit_review.html'
@@ -214,6 +217,7 @@ def comment_edit(request, slug, comment_id):
             )
 
     return HttpResponseRedirect(reverse('review_detail', args=[slug]))
+
 
 def comment_delete(request, slug, comment_id):
     """View to delete comment"""

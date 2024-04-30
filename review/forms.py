@@ -25,11 +25,11 @@ class ReviewForm(forms.ModelForm):
         )
         widgets = {
             'book_cover': forms.FileInput(
-                attrs={'class':'form-control', 'type':'file'}),
-            'book_title': forms.TextInput(attrs={'class':'form-control'}),
-            'book_author': forms.TextInput(attrs={'class':'form-control'}),
-            'book_genre': forms.Select(attrs={'class':'form-control'}),
-            'book_blurb': forms.Textarea(attrs={'class':'form-control'}),
-            'book_rating': forms.Select(attrs={'class':'form-control'}),
-            'book_review': forms.Textarea(attrs={'class':'form-control'}),
+                attrs={'class': 'form-control', 'type': 'file'}),
+            'book_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'book_author': forms.TextInput(attrs={'class': 'form-control'}),
+            'book_genre': forms.Select(attrs={'class': 'form-control'}),
+            'book_blurb': forms.Textarea(attrs={'class': 'form-control'}),
+            'book_rating': forms.Select(attrs={'class': 'form-control'}),
+            'book_review': forms.Textarea(attrs={'class': 'form-control'}),
         }
