@@ -173,6 +173,68 @@ The key value pair is too long to be truncated in less than 80 characters in one
 ---
 
 
+## Lighthouse Report
+
+### Registration page
+
+- ![Lighouse registration page](documentation/lighthouse-registerpage.png)
+
+### Login page
+
+- ![Lighthouse login page](documentation/lighthouse-login.png)
+
+### Logout page
+
+- ![Lighthouse logout page](documentation/lighthouse-logout.png)
+
+### Home page
+
+- ![Lighthouse homepage](documentation/lighthouse-homepage.png)
+
+### About page
+
+- ![Lighthouse about page](documentation/lighthouse-aboutpage.png)
+
+### Review detail page
+
+- ![Lighthouse review detail page](documentation/lighthouse-reviewdetail.png)
+
+### Profile page
+
+- ![Lighthouse profile page](documentation/lighthouse-profilepage.png)
+
+### Edit account page
+
+- ![Lighthouse edit account page](documentation/lighthouse-editaccount.png)
+
+### Edit profile page
+
+- ![Lighthouse edit profile page](documentation/lighthouse-editprofilepage.png)
+
+### Add a review page
+
+- ![Lighthouse add review page](documentation/lighthouse-addreview.png)
+
+### Edit a review page
+
+- ![Lighthouse edit review page](documentation/lighthouse-editreview.png)
+
+### Delete a review page
+
+- ![Lighthouse delete review page](documentation/lighthouse-deletereview.png)
+
+
+---
+
+
+## Responsiveness
+
+Bootstrap 5 was used for the majority of styling and designing the layout and display of the website, which is a responsive mobile first design. The responsiveness was checked manually by using devtools (Chrome) throughout the whole development.
+
+
+---
+
+
 ## Bugs
 
 ### Known bugs
