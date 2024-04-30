@@ -45,7 +45,7 @@ Link to the [kanban board](https://github.com/users/marcgithub23/projects/2).
 [Link](https://github.com/marcgithub23/pp4-reads-reviews/issues?q=is%3Aissue+is%3Aclosed) to the completed and closed user stories.
 ![Closed user stories](documentation/closed-userstories.png)
 
-[Link](https://github.com/marcgithub23/pp4-reads-reviews/issues?q=is%3Aopen+is%3Aissue) to uncompleted and open user stories in the backlog, which will be implemented as future features.
+[Link](https://github.com/marcgithub23/pp4-reads-reviews/issues?q=is%3Aopen+is%3Aissue) to the uncompleted and open user stories in the backlog, which will be implemented as future features.
 ![Open user stories](documentation/open-userstories.png)
 
 
@@ -155,7 +155,7 @@ Google Fonts Martel, Yrsa, and PT Sans Caption were used for h1, h2, and p eleme
 
 ### Database
 
-* ElephantSQL was the external database used to store all the data.
+* [ElephantSQL](https://www.elephantsql.com/) was the external database used to store all the data.
 
 ### Entity-Relationship Diagram
 
@@ -457,7 +457,7 @@ pip3 install -r requirements/txt
 - For prepopulating the slug field using slugify in a Django form, this [stackoverflow thread](https://stackoverflow.com/questions/55314246/pre-populate-slug-field-into-a-form-field-of-a-django-site) was consulted.
 - For defensive mechanism against unauthorised access, this [stackoverflow thread](https://stackoverflow.com/questions/40894567/django-updateview-dispatch-reduce-the-number-of-queries) was consulted.
 - For implementing signals and receivers for automating profile creation when a user registers and linking both, my mentor [Juliia Konovalova](https://github.com/IuliiaKonovalova) showed me how using her own code as an example.
-- For using the Django extension pygraphviz, this [article](https://yathomasi.medium.com/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16) was consulted.
+- For using the Django extension pygraphviz, this [article](https://yathomasi.medium.com/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16) was consulted. Thanks to mentor [Tim Nelson](https://github.com/TravelTimN) for introducing this to me on the third and final mentor session for this project.
 - For styling the website, the following resources were consulted:
     - [Bootstrap 5 examples](https://getbootstrap.com/docs/5.3/examples/)
     - This [article](https://realpython.com/django-pagination/#djangos-built-in-paginator) for the pagination

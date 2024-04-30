@@ -88,7 +88,7 @@ The about page shows what the purposes of the website is.
 
 ![About page feedback](documentation/aboutpage2.png)
 
-It also has a feedback form that any website visitor can fill out and submite, regardless of whether they are registered or not, logged in or not.
+It also has a feedback form that any website visitor can fill out and submit, regardless of whether they are registered or not, logged in or not.
 
 ### Profile page
 
@@ -98,7 +98,7 @@ The profile page shows the profile photo, username, and bio. If a user is logged
 
 ![Profile page reviews list](documentation/profilepage2.png)
 
-The profile page displays a list of published reviews. It also shows a list of reviews still in draft, if the user logged in is the owner of the profile page. Additionally, the edit button is visible on each published and draft review. Otherwise, if the user logged in is not the owner of the profile page, only a list of published reviews are shown and no drafts, as well as the edit button. The delete button is also available to delete reviews.
+The profile page displays a list of published reviews. It also shows a list of reviews still in draft, if the user logged in is the owner of the profile page. Additionally, the edit button is visible on each published and draft review. Otherwise, if the user logged in is not the owner of the profile page, only a list of published reviews are shown and no drafts, and the edit button is not shown as well. The delete button is also available to delete reviews if the user logged in is the owner.
 
 ### Edit profile page
 
@@ -128,7 +128,7 @@ Below the page is the comment section, where a logged in user can leave comments
 ![Add review page](documentation/addreviewpage.png)
 ![Add review page](documentation/addreviewpage2.png)
 
-The add review page shows a form that a logged in user can fill out to publish a review of a book. It also have the option to save the review as draft.
+The add review page shows a form that a logged in user can fill out to publish a review of a book. It also has the option to save the review as draft.
 
 ### Edit review page
 
