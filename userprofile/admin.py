@@ -8,5 +8,4 @@ from .models import UserProfile
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     """Admin for the UserProfile model."""
-
     list_display = ('user_profile', 'profile_photo', 'bio')

@@ -6,10 +6,9 @@
     Edit Account
 {% endblock %}
 
-
-
 {% block content %}
 
+<!-- Form for editing account -->
 {% if user.is_authenticated %}
     {% if user.id == user.profile.id %}
         <section>

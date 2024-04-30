@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import get_object_or_404, reverse
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -17,7 +17,7 @@ class EditAccountView(
 	LoginRequiredMixin,
 	SuccessMessageMixin,
 	generic.UpdateView):
-	
+	'''View for editing account'''
 	form_class = EditAccountForm
 	template_name = 'userprofile/edit_account.html'
 	success_url = reverse_lazy('home')
@@ -25,7 +25,8 @@ class EditAccountView(
 
 	def get_object(self):
 		return self.request.user
-	
+
+	# Defensive coding for editing account when not logged in already
 	def dispatch(self, request, *args, **kwargs):
 		if not request.user.is_authenticated:
 			messages.error(
@@ -36,9 +37,11 @@ class EditAccountView(
 
 
 class ProfilePageView(generic.DetailView):
+	'''View for profile page'''
 	model = UserProfile
 	template_name = 'userprofile/profile_page.html'
 
+	# Get data to be accessed on the html page
 	def get_context_data(self, *args, **kwargs):
 		context = super(ProfilePageView, self).get_context_data(
 			*args, **kwargs
@@ -60,20 +63,22 @@ class EditProfilePageView(
 	LoginRequiredMixin,
 	SuccessMessageMixin,
 	generic.UpdateView):
-
+	'''View for editing profile page'''
 	model = UserProfile
 	template_name = 'userprofile/edit_profile_page.html'
 	fields = ['profile_photo', 'bio']
 	success_url = reverse_lazy('home')
 	success_message = 'Your profile page has been successfully updated.'
 
+	# Defensive coding for editing profile page when not logged in already
 	def dispatch(self, request, *args, **kwargs):
 		if not request.user.is_authenticated:
 			messages.error(
 				request,
 				'Please log in to edit your profile.')
 			return HttpResponseRedirect(reverse('home'))
-		
+
+		# Defensive coding for editing profile page without authorisation
 		self.object = self.get_object()
 		if self.object.user_profile != request.user:
 			messages.error(
